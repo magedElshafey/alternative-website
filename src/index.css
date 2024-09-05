@@ -1,0 +1,178 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+    --mainColor: #009639;
+    --bgSection: #F0F0F0;
+    --redColor: #ED2E38;
+    --grayColor: #FEFEFE;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    scroll-behavior: smooth;
+    text-transform: capitalize;
+    overflow-x: hidden !important;
+    font-family: "Cairo", sans-serif;
+    background-color: var(--mainColor);
+}
+
+/* google font */
+/* .roboto-thin {
+    font-family: "Roboto", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+} */
+
+/* .roboto-light {
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+} */
+
+/* .roboto-regular {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.roboto-medium {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+} */
+
+/* .roboto-bold {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.roboto-black {
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+} */
+
+/* .roboto-thin-italic {
+    font-family: "Roboto", sans-serif;
+    font-weight: 100;
+    font-style: italic;
+}
+
+.roboto-light-italic {
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-style: italic;
+} */
+
+/* .roboto-regular-italic {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: italic;
+} */
+
+/* .roboto-medium-italic {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-style: italic;
+}
+
+.roboto-bold-italic {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-style: italic;
+}
+
+.roboto-black-italic {
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    font-style: italic;
+} */
+
+/* utility classes */
+.spinner {
+    --d: 24.6px;
+    width: 4.5px;
+    height: 4.5px;
+    border-radius: 50%;
+    color: var(--mainColor);
+    box-shadow: calc(1*var(--d)) calc(0*var(--d)) 0 0,
+        calc(0.707*var(--d)) calc(0.707*var(--d)) 0 1.1px,
+        calc(0*var(--d)) calc(1*var(--d)) 0 2.2px,
+        calc(-0.707*var(--d)) calc(0.707*var(--d)) 0 3.4px,
+        calc(-1*var(--d)) calc(0*var(--d)) 0 4.5px,
+        calc(-0.707*var(--d)) calc(-0.707*var(--d))0 5.6px,
+        calc(0*var(--d)) calc(-1*var(--d)) 0 6.7px;
+    animation: spinner-a90wxe 1s infinite steps(8);
+}
+
+@keyframes spinner-a90wxe {
+    100% {
+        transform: rotate(1turn);
+    }
+}
+
+a.active {
+    font-weight: bold !important;
+}
+
+.main {
+    min-height: calc(100vh - 440px);
+}
+
+/* @media screen and (max-width : 662px) {
+    .main {
+        min-height: calc(100vh - 1100px);
+    }
+} */
+a.auth.active {
+    background-color: var(--mainColor);
+    color: white;
+}
+
+/* pagination */
+.paginationBttns {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.paginationBttns li {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: var(--mainColor);
+    border: 2px solid var(--grayColor) !important;
+}
+
+.paginationActive {
+    background-color: var(--mainColor) !important;
+    color: white !important;
+    border: none;
+}
+
+.css-13cymwt-control {
+    border: none !important;
+    cursor: pointer;
+}
+
+.css-13cymwt-control:focus {
+    outline: none !important;
+    border: none !important;
+}
