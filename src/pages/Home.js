@@ -11,6 +11,7 @@ const Home = () => {
   const { isLoading, data } = useAlternativeBrands();
   const { isLoading: loadingForegin, data: foregin } = useForeginBrands();
   const { data: global } = useGlobalContext();
+  console.log("this is global", global);
   return (
     <>
       {isLoading || loadingForegin ? (
@@ -18,7 +19,7 @@ const Home = () => {
       ) : (
         <div>
           <Hero appLinks={global?.app_links} />
-          <About />
+          <About title={global?.about_us} />
           <div className="my-12">
             <Products
               isHome={true}
@@ -32,6 +33,19 @@ const Home = () => {
               data={foregin?.data?.data || []}
               isLocal={false}
             />
+          </div>
+          {foregin?.data?.recently_viewed_products?.length ? (
+            <div className="my-12">
+              <Products
+                isHome={true}
+                data={foregin?.data?.recently_viewed_products || []}
+                isLocal={false}
+                title="recently viewd"
+              />
+            </div>
+          ) : null}
+
+          <div>
             <AddAlternative />
           </div>
         </div>

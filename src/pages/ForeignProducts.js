@@ -87,7 +87,16 @@ const ForeignProducts = () => {
               </p>
             </div>
           )}
-
+          {data?.data?.recently_viewed_products?.length ? (
+            <div className="my-12">
+              <Products
+                isHome={true}
+                data={data?.data?.recently_viewed_products || []}
+                isLocal={false}
+                title="recently viewd"
+              />
+            </div>
+          ) : null}
           {data?.data?.brands?.data > itemsPerPage ? (
             <div className="mt-12">
               <Pagination

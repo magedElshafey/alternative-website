@@ -1,7 +1,7 @@
 import React from "react";
 import { aboutDetails } from "../../data/data";
 import { useTranslation } from "react-i18next";
-const About = () => {
+const About = ({ title }) => {
   const { t } = useTranslation();
   return (
     <div>
@@ -16,7 +16,7 @@ const About = () => {
             />
           </div>
           <div className="roboto-medium text-mainColor leading-loose">
-            {t(aboutDetails?.desc)}
+            {title}
           </div>
         </div>
       </div>

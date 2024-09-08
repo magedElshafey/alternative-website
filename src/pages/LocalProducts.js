@@ -92,7 +92,16 @@ const LocalProducts = () => {
               </p>
             </div>
           )}
-
+          {data?.data?.recently_viewed_products?.length ? (
+            <div className="my-12">
+              <Products
+                isHome={true}
+                data={data?.data?.recently_viewed_products || []}
+                isLocal={true}
+                title="recently viewd"
+              />
+            </div>
+          ) : null}
           {data?.data?.data?.length > itemsPerPage ? (
             <div className="mt-12">
               <Pagination

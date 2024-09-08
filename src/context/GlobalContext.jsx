@@ -3,16 +3,27 @@ import { useQuery } from "react-query";
 import { request } from "../utils/axios";
 import NotFound from "../pages/NotFound";
 import Spinner from "../components/common/Spinner";
+import { useTranslation } from "react-i18next";
 const GlobalProvider = createContext();
 export const useGlobalContext = () => {
   return useContext(GlobalProvider);
 };
-const fetchData = async () => {
-  return await request({
-    url: "/settings",
-  });
-};
+
 const GlobalContext = ({ children }) => {
+  const { i18n } = useTranslation();
+  const fetchData = async () => {
+    let url = "/settings";
+    if (i18n.language === "ar") {
+      url = "/settings?lang=ar";
+    } else if (i18n.language === "tr") {
+      url = "/settings?lang=tr";
+    } else {
+      url = "/settings";
+    }
+    return await request({
+      url,
+    });
+  };
   const { isLoading, data, isError } = useQuery("settings", fetchData);
   if (isLoading) {
     return <Spinner />;

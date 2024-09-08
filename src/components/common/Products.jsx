@@ -7,7 +7,7 @@ import local from "../../assets/true.png";
 import exportImg from "../../assets/export.png";
 import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
 import boycot from "../../assets/boycot.png";
-const Products = ({ isHome, data, isLocal }) => {
+const Products = ({ isHome, data, isLocal, title }) => {
   const { t, i18n } = useTranslation();
   return (
     <div>
@@ -18,7 +18,13 @@ const Products = ({ isHome, data, isLocal }) => {
           isLocal ? "text-mainColor" : "text-redColor"
         }`}
       >
-        {isLocal ? t("Popular Local Brands") : t("Popular Foregin Brands")}
+        {isLocal
+          ? title
+            ? t(title)
+            : t("Popular Local Brands")
+          : title
+          ? t(title)
+          : t("Popular Foregin Brands")}
       </p>
       <div className="mt-8 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3  justify-center">
         {isHome
