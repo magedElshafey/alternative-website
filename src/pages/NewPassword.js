@@ -35,6 +35,8 @@ const NewPassword = () => {
     let url = "/resetPassword";
     if (i18n.language === "ar") {
       url = "/resetPassword?lang=ar";
+    } else if (i18n.language === "tr") {
+      url = "/resetPassword?lang=tr";
     } else {
       url = "/resetPassword";
     }

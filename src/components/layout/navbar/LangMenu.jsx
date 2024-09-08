@@ -23,9 +23,9 @@ const LangMenu = () => {
     window.location.reload();
     setShowMenu(false);
   };
-  const englishMenu = ["ar", "tur"];
-  const arabicMenu = ["en", "tur"];
-  const turMenu = ["en", "ar"];
+  const englishMenu = ["ar", "tr"];
+  const arabicMenu = ["en", "tr"];
+  const trMenu = ["en", "ar"];
   return (
     <div
       ref={menuRef}
@@ -69,8 +69,8 @@ const LangMenu = () => {
                 {t(item)}
               </li>
             ))
-          : i18n.language === "tur"
-          ? turMenu.map((item, index) => (
+          : i18n.language === "tr"
+          ? trMenu.map((item, index) => (
               <li
                 onClick={() => handleChangeLanguage(item)}
                 key={index}

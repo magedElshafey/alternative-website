@@ -31,6 +31,8 @@ const Login = () => {
     let url = "/loginAPI";
     if (i18n.language === "ar") {
       url = "/loginAPI?lang=ar";
+    } else if (i18n.language === "tr") {
+      url = "/loginAPI?lang=tr";
     } else {
       url = "/loginAPI";
     }

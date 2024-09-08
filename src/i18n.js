@@ -12,7 +12,7 @@ const resources = {
   ar: {
     translation: TranselateAr,
   },
-  tur: {
+  tr: {
     translation: TranselateTur,
   },
 };

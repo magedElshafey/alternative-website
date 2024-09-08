@@ -5,7 +5,6 @@ import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { CiUser } from "react-icons/ci";
 import { MdOutlinePhoneAndroid } from "react-icons/md";
-import { GiCommercialAirplane } from "react-icons/gi";
 import { CiLogout } from "react-icons/ci";
 import { MdDelete } from "react-icons/md";
 import { request } from "../utils/axios";
@@ -86,6 +85,8 @@ const EditAccount = () => {
     let url = "/profile";
     if (i18n.language === "ar") {
       url = "/profile?lang=ar";
+    } else if (i18n.language === "tr") {
+      url = "/profile?lang=tr";
     } else {
       url = "/profile";
     }
@@ -113,6 +114,8 @@ const EditAccount = () => {
     let url = "/logoutAPI";
     if (i18n.language === "ar") {
       url = "/logoutAPI?lang=ar";
+    } else if (i18n.language === "tr") {
+      url = "/logoutAPI?lang=tr";
     } else {
       url = "/logoutAPI";
     }
@@ -143,6 +146,8 @@ const EditAccount = () => {
     let url = "/deleteProfile";
     if (i18n.language === "ar") {
       url = "/deleteProfile?lang=ar";
+    } else if (i18n.language === "tr") {
+      url = "/deleteProfile?lang=tr";
     } else {
       url = "/deleteProfile";
     }
@@ -217,6 +222,8 @@ const EditAccount = () => {
     let url = "/updateProfile";
     if (i18n.language === "ar") {
       url = "/updateProfile?lang=ar";
+    } else if (i18n.language === "tr") {
+      url = "/updateProfile?lang=tr";
     } else {
       url = "/updateProfile";
     }
@@ -257,6 +264,8 @@ const EditAccount = () => {
     let url = "/changePassword";
     if (i18n.language === "ar") {
       url = "/changePassword?lang=ar";
+    } else if (i18n.language === "tr") {
+      url = "/changePassword?lang=tr";
     } else {
       url = "/changePassword";
     }

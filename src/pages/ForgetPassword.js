@@ -18,6 +18,8 @@ const ForgetPassword = () => {
     let url = "/forgetPassword";
     if (i18n.language === "ar") {
       url = "/forgetPassword?lang=ar";
+    } else if (i18n.language === "tr") {
+      url = "/forgetPassword?lang=tr";
     } else {
       url = "/forgetPassword";
     }

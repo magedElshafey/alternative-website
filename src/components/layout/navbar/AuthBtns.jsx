@@ -23,6 +23,8 @@ const AuthBtns = (isSidebar) => {
     let url = "/logoutAPI";
     if (i18n.language === "ar") {
       url = "/logoutAPI?lang=ar";
+    } else if (i18n.language === "tr") {
+      url = "/logoutAPI?lang=tr";
     } else {
       url = "/logoutAPI";
     }

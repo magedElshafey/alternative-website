@@ -54,6 +54,8 @@ const Regester = () => {
     let url = "/registerAPI";
     if (i18n.language === "ar") {
       url = "/registerAPI?lang=ar";
+    } else if (i18n.language === "tr") {
+      url = "/registerAPI?lang=tr";
     } else {
       url = "/registerAPI";
     }

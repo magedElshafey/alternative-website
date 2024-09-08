@@ -2,17 +2,51 @@ import React, { useState } from "react";
 import LeftSide from "../components/common/auth/LeftSide";
 import RightSide from "../components/common/auth/RightSide";
 import login from "../assets/pass.png";
-
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import OtpInput from "react-otp-input";
+import { request } from "../utils/axios";
+import { useMutation } from "react-query";
+import toast from "react-hot-toast";
 const PasswordVerfication = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const [otp, setOtp] = useState("");
   const handleClick = () => {
     localStorage.setItem("otp", JSON.stringify(otp));
     navigate("/auth/new-password");
+  };
+  // handle resend otp
+  const resendOtp = async (data) => {
+    let url = "/resendOTP";
+    if (i18n.language === "ar") {
+      url = "/resendOTP?lang=ar";
+    } else if (i18n.language === "tr") {
+      url = "/resendOTP?lang=tr";
+    } else {
+      url = "/resendOTP";
+    }
+    return await request({
+      url,
+      method: "POST",
+      data,
+    });
+  };
+  const { isLoading, mutate } = useMutation(resendOtp, {
+    onSuccess: (data) => {
+      console.log("data from resend otp", data);
+      if (data?.data?.status) {
+        toast.success(data?.data?.message);
+      } else {
+        toast.error(data?.response?.data?.message);
+      }
+    },
+  });
+  const handleResendClick = () => {
+    const data = {
+      email: JSON.parse(localStorage.getItem("forget-email")) || "",
+    };
+    mutate(data);
   };
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-3 items-center">
@@ -42,7 +76,13 @@ const PasswordVerfication = () => {
             />
           </div>
           <div className="mt-5 flex justify-center">
-            <button>
+            <button
+              onClick={handleResendClick}
+              disabled={isLoading}
+              className={`${
+                isLoading ? " cursor-not-allowed bg-opacity-30" : ""
+              }`}
+            >
               {t("don’t receive code ?")}
               <span className="text-mainColor">{t("resend again")}</span>
             </button>

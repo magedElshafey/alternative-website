@@ -2,7 +2,7 @@
   "test": "test",
   "en": "english",
   "ar": "arabic",
-  "tur": "Turkish",
+  "tr": "Turkish",
   "regester": "signup",
   "login": "login",
   "home": "home",
