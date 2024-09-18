@@ -8,6 +8,10 @@ import excelIcon from "../assets/excel.png";
 import { RiArrowGoBackLine } from "react-icons/ri";
 import { RiCloseFill } from "react-icons/ri";
 import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
+import { useMutation, useQuery } from "react-query";
+import { request } from "../utils/axios";
+import LoadingBtn from "../components/common/buttons/LoadingBtn";
+import toast from "react-hot-toast";
 const AddProductOwner = () => {
   const [file, setFile] = useState(null);
   const [uploadProgress, setUploadProgress] = useState(0);
@@ -24,6 +28,7 @@ const AddProductOwner = () => {
   };
   const onDrop = (acceptedFiles) => {
     const file = acceptedFiles[0];
+    console.log(acceptedFiles[0]);
     setFile(file);
     uploadFile(file);
   };
@@ -52,7 +57,65 @@ const AddProductOwner = () => {
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
   });
-
+  const fetchExportExample = async () => {
+    return await request({
+      url: "/export_example",
+    });
+  };
+  const { isLoading, data, refetch } = useQuery(
+    "export-example",
+    fetchExportExample,
+    {
+      enabled: false,
+    }
+  );
+  const handleDownload = () => {
+    refetch().then((result) => {
+      if (result?.data?.data?.data?.file_link) {
+        toast.success(result?.data?.data?.message);
+        const fileLink = result.data?.data?.data?.file_link;
+        console.log("fileLink", fileLink);
+        const link = document.createElement("a");
+        link.href = fileLink;
+        link.setAttribute("download", "file.xlsx"); // You can change the file name here
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+      }
+    });
+  };
+  const handleSendFile = async (data) => {
+    const headers = {
+      "Content-Type": "multipart/form-data",
+    };
+    return await request({
+      url: "/import",
+      method: "POST",
+      headers,
+      data,
+    });
+  };
+  const { isLoading: loadingSendingFile, mutate } = useMutation(
+    handleSendFile,
+    {
+      onSuccess: (data) => {
+        console.log("data from upload", data);
+        if (data?.data?.status) {
+          navigate("/success");
+        } else {
+          toast.error(data?.response?.data?.message);
+        }
+      },
+      onError: (data) => {
+        toast.error(data?.response?.data?.message);
+      },
+    }
+  );
+  const handleSubmitClick = () => {
+    const data = { file };
+    mutate(data);
+    console.log("data", data);
+  };
   return (
     <div>
       <Link to="/" className=" inline-block w-fit">
@@ -98,18 +161,22 @@ const AddProductOwner = () => {
                   </button>
                 </div>
                 <div className="mt-8 w-full flex justify-center">
-                  <button
-                    onClick={() => navigate("/success")}
-                    type="button"
-                    className="bg-mainColor p-3  rounded-lg w-[180px] capitalize text-white flex items-center justify-center gap-4"
-                  >
-                    <p>{t("submit")}</p>
-                    {i18n.language === "ar" ? (
-                      <FaArrowLeftLong size={20} className="mt-1" />
-                    ) : (
-                      <FaArrowRightLong size={20} className="mt-1" />
-                    )}
-                  </button>
+                  {false ? (
+                    <LoadingBtn />
+                  ) : (
+                    <button
+                      onClick={handleSubmitClick}
+                      type="button"
+                      className="bg-mainColor p-3  rounded-lg w-[180px] capitalize text-white flex items-center justify-center gap-4"
+                    >
+                      <p>{t("submit")}</p>
+                      {i18n.language === "ar" ? (
+                        <FaArrowLeftLong size={20} className="mt-1" />
+                      ) : (
+                        <FaArrowRightLong size={20} className="mt-1" />
+                      )}
+                    </button>
+                  )}
                 </div>
               </div>
             )}
@@ -123,10 +190,19 @@ const AddProductOwner = () => {
                 "To easy upload all of your products please download the template sheet excel."
               )}
             </p>
-            <button className="flex items-center justify-center gap-3 bg-mainColor text-white p-3 rounded-lg min-w-[200px] capitalize">
-              <FaDownload size={20} />
-              <p>{t("download")}</p>
-            </button>
+            {isLoading ? (
+              <div className="flex items-center justify-center gap-3 bg-mainColor text-white p-3 rounded-lg min-w-[200px] capitalize">
+                <LoadingBtn />
+              </div>
+            ) : (
+              <button
+                onClick={handleDownload}
+                className="flex items-center justify-center gap-3 bg-mainColor text-white p-3 rounded-lg min-w-[200px] capitalize"
+              >
+                <FaDownload size={20} />
+                <p>{t("download")}</p>
+              </button>
+            )}
           </div>
           <div className="w-full flex flex-col items-center justify-center gap-3">
             <p className="text-balance md:text-md lg:text-lg xl:text-xl roboto-medium">
