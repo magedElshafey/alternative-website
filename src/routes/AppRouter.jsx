@@ -3,7 +3,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import WebsiteLayout from "../templates/websiteLayout/WebsiteLayout.jsx";
 // pages
 import Home from "../pages/Home";
-import About from "../pages/About";
 import ForeignProducts from "../pages/ForeignProducts.js";
 import LocalProducts from "../pages/LocalProducts.js";
 import Login from "../pages/Login.js";
@@ -33,10 +32,7 @@ const router = createBrowserRouter([
         element: <Home />,
         index: true,
       },
-      {
-        path: "about",
-        element: <About />,
-      },
+
       {
         path: "local-products",
         element: <LocalProducts />,

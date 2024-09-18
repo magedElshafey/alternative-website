@@ -34,7 +34,6 @@ const PasswordVerfication = () => {
   };
   const { isLoading, mutate } = useMutation(resendOtp, {
     onSuccess: (data) => {
-      console.log("data from resend otp", data);
       if (data?.data?.status) {
         toast.success(data?.data?.message);
       } else {

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import logo from "../assets/coloredLogo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -18,17 +18,9 @@ const AddProductOwner = () => {
   const [isUploading, setIsUploading] = useState(false);
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
-  const fileInputRef = useRef(null);
-  const handleFileClick = () => {
-    fileInputRef.current.click();
-  };
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    // Handle file upload logic here
-  };
+
   const onDrop = (acceptedFiles) => {
     const file = acceptedFiles[0];
-    console.log(acceptedFiles[0]);
     setFile(file);
     uploadFile(file);
   };
@@ -58,11 +50,19 @@ const AddProductOwner = () => {
     onDrop,
   });
   const fetchExportExample = async () => {
+    let url = "/export_example";
+    if (i18n.language === "ar") {
+      url = "/export_example?lang=ar";
+    } else if (i18n.language === "tr") {
+      url = "/export_example?lang=tr";
+    } else {
+      url = "/export_example";
+    }
     return await request({
-      url: "/export_example",
+      url,
     });
   };
-  const { isLoading, data, refetch } = useQuery(
+  const { isLoading, refetch } = useQuery(
     "export-example",
     fetchExportExample,
     {
@@ -74,7 +74,6 @@ const AddProductOwner = () => {
       if (result?.data?.data?.data?.file_link) {
         toast.success(result?.data?.data?.message);
         const fileLink = result.data?.data?.data?.file_link;
-        console.log("fileLink", fileLink);
         const link = document.createElement("a");
         link.href = fileLink;
         link.setAttribute("download", "file.xlsx"); // You can change the file name here
@@ -85,11 +84,19 @@ const AddProductOwner = () => {
     });
   };
   const handleSendFile = async (data) => {
+    let url = "/import";
+    if (i18n.language === "ar") {
+      url = "/import?lang=ar";
+    } else if (i18n.language === "tr") {
+      url = "/import?lang=tr";
+    } else {
+      url = "/import";
+    }
     const headers = {
       "Content-Type": "multipart/form-data",
     };
     return await request({
-      url: "/import",
+      url,
       method: "POST",
       headers,
       data,
@@ -99,7 +106,6 @@ const AddProductOwner = () => {
     handleSendFile,
     {
       onSuccess: (data) => {
-        console.log("data from upload", data);
         if (data?.data?.status) {
           navigate("/success");
         } else {
@@ -114,7 +120,6 @@ const AddProductOwner = () => {
   const handleSubmitClick = () => {
     const data = { file };
     mutate(data);
-    console.log("data", data);
   };
   return (
     <div>
@@ -161,7 +166,7 @@ const AddProductOwner = () => {
                   </button>
                 </div>
                 <div className="mt-8 w-full flex justify-center">
-                  {false ? (
+                  {loadingSendingFile ? (
                     <LoadingBtn />
                   ) : (
                     <button
@@ -228,9 +233,3 @@ const AddProductOwner = () => {
 };
 
 export default AddProductOwner;
-/**
- *   
-          {file && (
-         
-          )}
- */

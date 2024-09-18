@@ -1,6 +1,5 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
-import { foreigns } from "../data/data";
 import { useTranslation } from "react-i18next";
 import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
 import Spinner from "../components/common/Spinner";
@@ -10,8 +9,16 @@ const ForeignProductDetails = () => {
   const { i18n, t } = useTranslation();
   const { id } = useParams();
   const getProductDetails = async () => {
+    let url = `/brands/${id}`;
+    if (i18n.language === "ar") {
+      url = `/brands/${id}?lang=ar`;
+    } else if (i18n.language === "tr") {
+      url = `/brands/${id}?lang=tr`;
+    } else {
+      url = `/brands/${id}`;
+    }
     return await request({
-      url: `/brands/${id}`,
+      url,
     });
   };
   const { isLoading, data } = useQuery(

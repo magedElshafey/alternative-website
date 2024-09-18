@@ -11,7 +11,6 @@ const Home = () => {
   const { isLoading, data } = useAlternativeBrands();
   const { isLoading: loadingForegin, data: foregin } = useForeginBrands();
   const { data: global } = useGlobalContext();
-  console.log("this is global", global);
   return (
     <>
       {isLoading || loadingForegin ? (

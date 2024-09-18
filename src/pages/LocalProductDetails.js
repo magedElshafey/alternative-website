@@ -10,8 +10,16 @@ const LocalProductDetails = () => {
   const { id } = useParams();
   //   add true icon
   const getProductDetails = async () => {
+    let url = `/brandsAlternative/${id}`;
+    if (i18n.language === "ar") {
+      url = `/brandsAlternative/${id}?lang=ar`;
+    } else if (i18n.language === "tr") {
+      url = `/brandsAlternative/${id}?lang=tr`;
+    } else {
+      url = `/brandsAlternative/${id}`;
+    }
     return await request({
-      url: `/brandsAlternative/${id}`,
+      url,
     });
   };
   const { isLoading, data } = useQuery(
