@@ -23,7 +23,7 @@ const LocalProductDetails = () => {
     });
   };
   const { isLoading, data } = useQuery(
-    ["alternative-product-details", id],
+    ["alternative- frproduct-details", id],
     getProductDetails
   );
   return (

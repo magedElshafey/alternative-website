@@ -1,8 +1,8 @@
 import React from "react";
 import { aboutDetails } from "../../data/data";
 import { useTranslation } from "react-i18next";
-const About = ({ title }) => {
-  const { t } = useTranslation();
+const About = ({ enTtile, arTitle, trTitle }) => {
+  const { i18n } = useTranslation();
   return (
     <div>
       <div>
@@ -16,7 +16,11 @@ const About = ({ title }) => {
             />
           </div>
           <div className="roboto-medium text-mainColor leading-loose">
-            {title}
+            {i18n.language === "ar"
+              ? arTitle
+              : i18n.language === "en"
+              ? enTtile
+              : trTitle}
           </div>
         </div>
       </div>

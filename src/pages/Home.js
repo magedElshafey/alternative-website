@@ -17,8 +17,21 @@ const Home = () => {
         <Spinner />
       ) : (
         <div>
-          <Hero appLinks={global?.app_links} />
-          <About title={global?.about_us} />
+          <Hero
+            appLinks={global?.app_links}
+            enTitle={global?.hero_title_en}
+            arTitle={global?.hero_title_ar}
+            trTitle={global?.hero_title_tr}
+            enDesc={global?.hero_description_en}
+            arDesc={global?.hero_description_ar}
+            trDesc={global?.hero_description_tr}
+            img={global?.hero_image}
+          />
+          <About
+            enTtile={global?.about_us_en}
+            arTitle={global?.about_us_ar}
+            trTitle={global?.about_us_tr}
+          />
           <div className="my-12">
             <Products
               isHome={true}
