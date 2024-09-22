@@ -16,7 +16,7 @@ import Spinner from "../components/common/Spinner";
 import useTextInputValidation from "../components/hooks/validation/useTextInputValidation";
 import useNumberInput from "../components/hooks/validation/useNumberInput";
 import useEmailValidation from "../components/hooks/validation/useEmailValidation";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import usePasswordValidation from "../components/hooks/validation/usePasswordValidation";
 import LoadingBtn from "../components/common/buttons/LoadingBtn";
@@ -329,7 +329,7 @@ const EditAccount = () => {
         <Spinner />
       ) : (
         <div className="bg-white shadow-xl w-full md:w-[80%] mx-auto  rounded-xl p-6">
-          <p className="text-xl md:text-2xl lg:text-3xl xl:text-4xl text-mainColor roboto-black text-center mb-8">
+          <p className="text-xl md:text-2xl  text-mainColor roboto-black text-center mb-8">
             {t("Edit Profile Account")}
           </p>
           <input
@@ -385,15 +385,17 @@ const EditAccount = () => {
           {role === "individual" ? (
             <>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-                <AuthInput
-                  icon={<CiUser size={20} />}
-                  type="text"
-                  placeholder={t("full name")}
-                  isPassword={false}
-                  value={name}
-                  onChange={handleNameChange}
-                  error={nameError}
-                />
+                <div>
+                  <AuthInput
+                    icon={<CiUser size={20} />}
+                    type="text"
+                    placeholder={t("full name")}
+                    isPassword={false}
+                    value={name}
+                    onChange={handleNameChange}
+                    error={nameError}
+                  />
+                </div>
                 <div dir="rtl" className="p-0">
                   <AuthInput
                     icon={<MdOutlinePhoneAndroid size={20} />}
@@ -407,19 +409,23 @@ const EditAccount = () => {
                 </div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-                <AuthInput
-                  icon={<MdEmail size={20} />}
-                  type="email"
-                  placeholder={t("email")}
-                  isPassword={false}
-                  value={email}
-                  error={emailError}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
+                <div>
+                  <AuthInput
+                    icon={<MdEmail size={20} />}
+                    type="email"
+                    placeholder={t("email")}
+                    isPassword={false}
+                    value={email}
+                    error={emailError}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </div>
               </div>
               {loadingUpdateProfile ? (
-                <div className="flex justify-center w-[180px] my-5">
-                  <LoadingBtn />
+                <div className="w-full flex justify-center  my-5">
+                  <div className="w-[200px]">
+                    <LoadingBtn />
+                  </div>
                 </div>
               ) : (
                 <div className="flex  items-center justify-center  gap-3 flex-wrap my-5">
@@ -439,40 +445,48 @@ const EditAccount = () => {
                 {t("change password")}
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-3">
-                <AuthInput
-                  icon={<RiLockPasswordFill size={20} />}
-                  type="password"
-                  placeholder={t("current password")}
-                  isPassword={true}
-                  value={currentPassword}
-                  error={currentPasswordError}
-                  onChange={handleCurrentPasswordChange}
-                />
+                <div>
+                  <AuthInput
+                    icon={<RiLockPasswordFill size={20} />}
+                    type="password"
+                    placeholder={t("current password")}
+                    isPassword={true}
+                    value={currentPassword}
+                    error={currentPasswordError}
+                    onChange={handleCurrentPasswordChange}
+                  />
+                </div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <AuthInput
-                  icon={<RiLockPasswordFill size={20} />}
-                  type="password"
-                  placeholder={t("new password")}
-                  isPassword={true}
-                  value={newPassword}
-                  error={newPasswordError}
-                  onChange={handleNewPasswordChange}
-                />
-                <AuthInput
-                  icon={<RiLockPasswordFill size={20} />}
-                  type="password"
-                  placeholder={t("confirm password")}
-                  isPassword={true}
-                  value={confirmPassword}
-                  error={confirmPasswordError}
-                  onChange={handleConfrimPasswordChange}
-                />
+                <div>
+                  <AuthInput
+                    icon={<RiLockPasswordFill size={20} />}
+                    type="password"
+                    placeholder={t("new password")}
+                    isPassword={true}
+                    value={newPassword}
+                    error={newPasswordError}
+                    onChange={handleNewPasswordChange}
+                  />
+                </div>
+                <div>
+                  <AuthInput
+                    icon={<RiLockPasswordFill size={20} />}
+                    type="password"
+                    placeholder={t("confirm password")}
+                    isPassword={true}
+                    value={confirmPassword}
+                    error={confirmPasswordError}
+                    onChange={handleConfrimPasswordChange}
+                  />
+                </div>
               </div>
               <div className="flex  items-center justify-center  gap-3 flex-wrap my-5">
                 {loadingUpdatePassword ? (
-                  <div className=" w-[180px]">
-                    <LoadingBtn />
+                  <div className="w-full flex justify-center">
+                    <div className=" w-[180px]">
+                      <LoadingBtn />
+                    </div>
                   </div>
                 ) : (
                   <button
@@ -520,8 +534,10 @@ const EditAccount = () => {
                 />
               </div>
               {loadingUpdateProfile ? (
-                <div className="flex justify-center w-[180px] my-5">
-                  <LoadingBtn />
+                <div className="w-full flex justify-center my-5">
+                  <div className=" w-[180px] ">
+                    <LoadingBtn />
+                  </div>
                 </div>
               ) : (
                 <div className="flex  items-center justify-center  gap-3 flex-wrap my-5">
@@ -588,7 +604,7 @@ const EditAccount = () => {
             </>
           )}
 
-          <div className="w-full   flex items-center gap-4 flex-wrap justify-end ">
+          <div className="w-full   flex items-center gap-4 flex-wrap justify-center lg:justify-end mt-8 lg:mt-0 ">
             <button
               type="button"
               onClick={handleLogOutClick}
@@ -605,6 +621,12 @@ const EditAccount = () => {
               <MdDelete size={20} />
               <p>{t("delete account")}</p>
             </button>
+            <Link
+              className="py-2 px-4 bg-mainColor text-white  flex items-center justify-center rounded-lg w-[180px]"
+              to="/"
+            >
+              {t("back to home")}
+            </Link>
           </div>
         </div>
       )}
