@@ -114,18 +114,18 @@ const AuthBtns = (isSidebar) => {
         </div>
       ) : (
         <div
-          className={`flex items-center gap-5 ${isSidebar ? "flex-wrap" : ""}`}
+          className={`flex items-center gap-2 ${isSidebar ? "flex-wrap" : ""}`}
         >
           <Link
             to="/auth/login"
-            className="py-2 px-3 flex items-center justify-center rounded-md font-medium bg-mainColor text-white border border-white min-w-[120px]"
+            className="p-2 flex items-center justify-center rounded-md font-medium bg-mainColor text-white border border-white min-w-[90px]"
           >
             {t("login")}
           </Link>
           {alternativeRegester ? null : (
             <Link
               to="/auth/regester"
-              className="py-2 px-3 flex items-center justify-center rounded-md font-medium bg-white text-mainColor min-w-[120px]"
+              className="p-2 flex items-center justify-center rounded-md font-medium bg-white text-mainColor min-w-[90px]"
             >
               {t("regester")}
             </Link>

@@ -11,13 +11,11 @@ const WbsiteLinks = ({ data, isFlex, isSidebar, setShowSidebar }) => {
     }
   };
   return (
-    <ul className={`${isFlex ? "flex items-center gap-5" : null}`}>
+    <ul className={`${isFlex ? "flex items-center gap-3" : null}`}>
       {data?.map((item, index) => (
         <li
           key={index}
-          className={`${
-            isFlex ? "text-white" : "mb-4"
-          } roboto-regular text-lg md:text-xl`}
+          className={`${isFlex ? "text-white" : "mb-4"} roboto-regular `}
         >
           <NavLink
             onClick={handleClick}

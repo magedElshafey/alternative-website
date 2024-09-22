@@ -38,7 +38,7 @@ const Navbar = () => {
             <div className=" hidden md:block ">
               <LangMenu />
             </div>
-            <div className=" hidden md:block ">
+            <div className="hidden md:block ">
               <AuthBtns isSidebar={false} />
             </div>
             <div className="md:hidden text-white">

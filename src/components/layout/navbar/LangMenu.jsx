@@ -39,7 +39,7 @@ const LangMenu = () => {
           e.stopPropagation();
           toggleShowMenu();
         }}
-        className="flex items-center cursor-pointer gap-1 text-white text-lg md:text-xl"
+        className="flex items-center cursor-pointer gap-1 text-white "
       >
         <p>{t(i18n.language)}</p>
         <MdOutlineKeyboardArrowDown />
