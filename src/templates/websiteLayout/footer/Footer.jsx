@@ -15,8 +15,8 @@ const Footer = () => {
 
   return (
     <div className="w-screen bg-mainColor py-4 text-white roboto-regular">
-      <div className="container mx-auto px-8 md:px-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-48">
+      <div className="container mx-auto px-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-16">
           <div>
             <Logo img={data?.logo} />
             <p className=" text-slate-200 mt-4">
@@ -24,13 +24,13 @@ const Footer = () => {
             </p>
           </div>
           <div>
-            <p className="text-white font-bold text-lg md:text-xl lg:text-2xl mb-4">
+            <p className="text-white font-bold text-lg md:text-xl  mb-4">
               {t("links")}
             </p>
             <WbsiteLinks isFlex={false} data={navlinks} isSidebar={false} />
           </div>
           <div>
-            <p className="text-white font-bold text-lg md:text-xl lg:text-2xl mb-4">
+            <p className="text-white font-bold text-lg md:text-xl mb-4">
               {t("contact us")}
             </p>
             <a
@@ -63,7 +63,7 @@ const Footer = () => {
             </p>
           </div>
           <div>
-            <p className="text-white font-bold text-lg md:text-xl lg:text-2xl mb-4">
+            <p className="text-white font-bold text-lg md:text-xl mb-4">
               {t("follow us")}
             </p>
             <SocialMedia />

@@ -10,9 +10,9 @@ const WebsiteLayout = () => {
     <div>
       <Meta fav={data?.favicon} />
       <Navbar />
-      <div className="main w-full container mx-auto px-8 lg:px-12 my-5">
+      <div className="main w-full container mx-auto px-6  my-5">
         <div className="bg-white py-3 flex items-center rounded-lg  border-2 border-slate-500">
-          <div className="container mx-auto px-8 lg:px-12">{<Outlet />}</div>
+          <div className="container mx-auto px-6">{<Outlet />}</div>
         </div>
       </div>
       <Footer />

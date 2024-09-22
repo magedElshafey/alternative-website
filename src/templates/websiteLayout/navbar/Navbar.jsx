@@ -29,7 +29,7 @@ const Navbar = () => {
   return (
     <>
       <div className="mt-3">
-        <div className="container mx-auto px-8 lg:px-12">
+        <div className="container mx-auto px-6">
           <div className="w-full flex items-center justify-between">
             <Logo img={data?.logo} />
             <div className=" hidden md:block ">

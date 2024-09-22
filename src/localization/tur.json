@@ -103,5 +103,9 @@
   "change password": "şifre değiştir",
   "current password": "mevcut şifre",
   "new password": "yeni şifre",
-  "recently viewd": "yakın zamanda görüntülendi"
+  "recently viewd": "yakın zamanda görüntülendi",
+  "Create a new account by filling your information below": "Aşağıdaki bilgilerinizi doldurarak yeni bir hesap oluşturun",
+  "Sign up": "Üye olmak",
+  "indvidual": "bireysel",
+  "orgnization": "organizasyon"
 }
