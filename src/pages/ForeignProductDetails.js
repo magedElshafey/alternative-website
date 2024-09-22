@@ -25,13 +25,14 @@ const ForeignProductDetails = () => {
     ["forgeing-product-details", id],
     getProductDetails
   );
+
   return (
     <>
       {isLoading ? (
         <Spinner />
       ) : (
         <div className="container mx-auto px-8 md:px-16">
-          <div className="w-full flex flex-col md:flex-row gap-2">
+          <div className="w-full flex flex-col md:flex-row gap-6 lg:gap-8">
             <div className="md:w-1/4 relative">
               <img
                 alt={data?.data?.data?.brand_name}
@@ -78,30 +79,38 @@ const ForeignProductDetails = () => {
                   </p>
                 </div>
               </div>
-              <div className="my-6 flex items-center flex-wrap gap-2">
-                {data?.data?.data?.brandAlternatives
-                  .slice(1, 5)
-                  ?.map((item, index) => (
-                    <img
-                      key={index}
-                      loading="lazy"
-                      alt={item?.brand_name}
-                      src={item?.brand_logo}
-                      className="w-[80px] h-[80px] rounded-[50%] object-contain"
-                    />
-                  ))}
-              </div>
-              <Link
-                to="/add-product"
-                className="bg-mainColor p-3 mt-12 mx-auto rounded-lg w-[250px] capitalize text-white flex items-center justify-center gap-4"
-              >
-                <p>{t("add alternative")}</p>
-                {i18n.language === "ar" ? (
-                  <FaArrowLeftLong size={20} className="mt-1" />
-                ) : (
-                  <FaArrowRightLong size={20} className="mt-1" />
-                )}
-              </Link>
+              {data?.data?.data?.brandAlternatives?.length ? (
+                <div>
+                  <p className="font-bold text-md lg:text-lg mb-3">
+                    {t("alternative")}
+                  </p>
+                  <div className=" flex items-center flex-wrap gap-2">
+                    {data?.data?.data?.brandAlternatives
+                      .slice(1, 5)
+                      ?.map((item, index) => (
+                        <Link key={index} to={`/foreign/${item?.id}`}>
+                          <img
+                            loading="lazy"
+                            alt={item?.brand_name}
+                            src={item?.brand_logo}
+                            className="w-[80px] h-[80px] rounded-[50%] object-contain"
+                          />
+                        </Link>
+                      ))}
+                  </div>
+                  <Link
+                    to="/add-product"
+                    className="bg-mainColor p-3   rounded-lg w-[250px] capitalize text-white flex items-center justify-center gap-4"
+                  >
+                    <p>{t("add alternative")}</p>
+                    {i18n.language === "ar" ? (
+                      <FaArrowLeftLong size={20} className="mt-1" />
+                    ) : (
+                      <FaArrowRightLong size={20} className="mt-1" />
+                    )}
+                  </Link>
+                </div>
+              ) : null}
             </div>
           </div>
         </div>

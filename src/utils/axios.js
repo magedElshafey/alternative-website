@@ -5,6 +5,7 @@ const token = userToken(store.getState());
 const lang = localStorage.getItem("lang")
   ? JSON.parse(localStorage.getItem("lang"))
   : "ar";
+console.log("lang", lang);
 const client = axios.create({
   baseURL: "https://alternatifurunler.com/api",
   headers: {
@@ -22,10 +23,12 @@ client.interceptors.request.use((config) => {
   if (token) {
     config.headers["Authorization"] = `Bearer ${token}`;
   }
-  // config.params = {
-  //   ...config.params, // الاحتفاظ بأي parameters حالية
-  //   lang: lang,
-  // };
+  const lang = localStorage.getItem("lang")
+    ? JSON.parse(localStorage.getItem("lang"))
+    : "ar";
+  config.headers["lang"] = lang;
+  config.headers["Accept-Language"] = lang;
+
   return config;
 });
 export const request = ({ ...options }) => {

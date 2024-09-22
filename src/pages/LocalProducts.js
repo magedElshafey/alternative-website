@@ -40,7 +40,6 @@ const LocalProducts = () => {
       </div>
     ),
   }));
-  const defaultCity = citiesOptions?.find((option) => option?.value === 818);
   // useEffect(() => {
   //   if (!selectedCity && defaultCity) {
   //     setSelectedCity(defaultCity.value);
@@ -49,15 +48,14 @@ const LocalProducts = () => {
   const handleNameChange = (e) => setName(e.target.value);
   return (
     <>
-      {isLoading || loadingCities ? (
+      {loadingCities ? (
         <Spinner />
       ) : (
         <div>
-          <div className="w-full flex items-center gap-5 p-2 bg-white rounded-lg border shadow mb-8  ">
+          {/* <div className="w-full flex items-center gap-5 p-2 bg-white rounded-lg border shadow mb-8  ">
             <Select
               options={citiesOptions}
               onChange={handleChange}
-              defaultValue={defaultCity}
               value={citiesOptions.find(
                 (option) => option.value === selectedCity
               )}
@@ -78,7 +76,7 @@ const LocalProducts = () => {
               value={name}
               onChange={handleNameChange}
             />
-          </div>
+          </div> */}
           {data?.data?.data?.length ? (
             <Products
               isLocal={true}
