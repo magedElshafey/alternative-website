@@ -52,7 +52,7 @@ const LocalProducts = () => {
         <Spinner />
       ) : (
         <div>
-          {/* <div className="w-full flex items-center gap-5 p-2 bg-white rounded-lg border shadow mb-8  ">
+          <div className="w-full flex items-center gap-5 p-2 bg-white rounded-lg border shadow mb-8  ">
             <Select
               options={citiesOptions}
               onChange={handleChange}
@@ -76,7 +76,7 @@ const LocalProducts = () => {
               value={name}
               onChange={handleNameChange}
             />
-          </div> */}
+          </div>
           {data?.data?.data?.length ? (
             <Products
               isLocal={true}
