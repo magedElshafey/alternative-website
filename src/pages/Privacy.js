@@ -9,7 +9,9 @@ const Privacy = () => {
       <p className="text-center mb-8 roboto-black text-xl md:text-2xl lg:text-3xl xl:text-4xl">
         {t("Privacy Policy")}
       </p>
-      <p className="text-[#121212] mb-6">{data?.terms_and_conditions}</p>
+      <p className="text-[#121212] mb-6">
+        <div dangerouslySetInnerHTML={{ __html: data?.terms_and_conditions }} />
+      </p>
     </div>
   );
 };
