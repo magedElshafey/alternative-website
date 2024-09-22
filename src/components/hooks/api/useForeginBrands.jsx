@@ -4,13 +4,13 @@ import { useTranslation } from "react-i18next";
 const useForeginBrands = (name, selectedCity) => {
   const { i18n } = useTranslation();
   const getForeginBrands = async (name, selectedCity) => {
-    let url = "/brands/search/PA";
+    let url = "/brands";
     if (i18n.language === "ar") {
-      url = "/brands/search/PA?lang=ar";
+      url = "/brands?lang=ar";
     } else if (i18n.language === "tr") {
-      url = "/brands/search/PA?lang=tr";
+      url = "/brands?lang=tr";
     } else {
-      url = "/brands/search/PA";
+      url = "/brands";
     }
     const params = {};
 
