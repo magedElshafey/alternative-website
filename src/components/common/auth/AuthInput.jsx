@@ -1,5 +1,5 @@
-import React from "react";
-import { FaRegEyeSlash } from "react-icons/fa";
+import React, { useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const AuthInput = ({
   icon,
@@ -7,8 +7,11 @@ const AuthInput = ({
   value,
   onChange,
   error,
+  type,
   ...otherProps
 }) => {
+  const [showPassword, setShowPassword] = useState(false);
+  const toggleShowPassword = () => setShowPassword(!showPassword);
   return (
     <>
       <div className="w-full mx-auto flex items-center gap-2 border border-[#D9D9D9] rounded-lg mb-3  p-2 ">
@@ -19,8 +22,29 @@ const AuthInput = ({
           required
           value={value}
           onChange={onChange}
+          type={
+            type === "password" && showPassword
+              ? "text"
+              : type === "password" && !showPassword
+              ? "password"
+              : type
+          }
         />
-        {isPassword ? <FaRegEyeSlash size={20} /> : null}
+        {type === "password" ? (
+          showPassword ? (
+            <FaEye
+              size={20}
+              className=" cursor-pointer"
+              onClick={toggleShowPassword}
+            />
+          ) : (
+            <FaEyeSlash
+              size={20}
+              className="cursor-pointer"
+              onClick={toggleShowPassword}
+            />
+          )
+        ) : null}
       </div>
       {error ? (
         <p className=" text-red-600 text-xs md:text-sm mb-2">{error}</p>

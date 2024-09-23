@@ -84,12 +84,12 @@ const Hero = ({
             </a>
           </div>
         </div>
-        <div>
+        <div className="flex justify-center md:justify-start">
           <img
             alt="hero"
             loading="lazy"
             src={img}
-            className="w-full h-[450px]"
+            className="w-full md:w-[564px] h-[522px] ms-auto"
           />
         </div>
       </div>
