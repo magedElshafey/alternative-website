@@ -70,7 +70,7 @@ const Regester = () => {
       if (data?.data?.status) {
         toast.success(data?.data?.message);
         navigate("/");
-        dispatch(regester(data?.data?.user));
+        // dispatch(regester(data?.data?.user));
         dispatch(addToken(data?.data?.token));
         setConfrim("");
         setName("");

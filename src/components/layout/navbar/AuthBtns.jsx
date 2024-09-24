@@ -122,14 +122,13 @@ const AuthBtns = (isSidebar) => {
           >
             {t("login")}
           </Link>
-          {alternativeRegester ? null : (
-            <Link
-              to="/auth/regester"
-              className="p-2 flex items-center justify-center rounded-md font-medium bg-white text-mainColor min-w-[90px]"
-            >
-              {t("regester")}
-            </Link>
-          )}
+
+          <Link
+            to="/auth/regester"
+            className="p-2 flex items-center justify-center rounded-md font-medium bg-white text-mainColor min-w-[90px]"
+          >
+            {t("regester")}
+          </Link>
         </div>
       )}
     </>

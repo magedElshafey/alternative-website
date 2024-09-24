@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 import Logo from "../../../components/layout/Logo";
-import logo from "../../../assets/whitelogo.png";
 import WbsiteLinks from "../../../components/layout/WbsiteLinks";
 import { navlinks } from "../../../data/data";
 import LangMenu from "../../../components/layout/navbar/LangMenu";
