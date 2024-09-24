@@ -22,8 +22,8 @@
   "alternative": "alternative",
   "export": "export",
   "boycot": "boycot",
-  "Popular Local Brands": "Popular Local Brands",
-  "Popular Foregin Brands": "Popular Foregin Brands",
+  "Popular Local Brands": "Local Brands",
+  "Popular Foregin Brands": "Foregin Brands",
   "Add an alternative brand": "Add an alternative brand",
   "errorText": "An error occurred while connecting and the page was not found",
   "tryAgain": "try Again",
@@ -104,5 +104,6 @@
   "current password": "current password",
   "new password": "new password",
   "no data": "no data found",
-  "recently viewd": "recently viewd"
+  "recently viewd": "recently viewd",
+  "Add an alternative": "Add an alternative"
 }

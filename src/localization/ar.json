@@ -22,8 +22,8 @@
   "alternative": "البديل",
   "export": "تصدير",
   "boycot": "مقاطعة",
-  "Popular Local Brands": "العلامات التجارية المحلية الشعبية",
-  "Popular Foregin Brands": "العلامات التجارية الأجنبية الشهيرة",
+  "Popular Local Brands": "العلامات التجارية المحلية",
+  "Popular Foregin Brands": "العلامات التجارية الأجنبية",
   "Add an alternative brand": "أضف علامة تجارية بديلة",
   "errorText": "حدث خطأ اثناء الاتصال و لم يتم العثور علي الصفحة",
   "tryAgain": "اعد المحاولة",
@@ -109,5 +109,6 @@
   "Create a new account by filling your information below": "قم بإنشاء حساب جديد عن طريق ملء المعلومات الخاصة بك أدناه",
   "indvidual": "أفراد",
   "orgnization": "مؤسسة",
-  "back to home": "العودة الي الرئيسية"
+  "back to home": "العودة الي الرئيسية",
+  "Add an alternative": "إضافة منتج بديل"
 }

@@ -6,8 +6,10 @@ import Pagination from "../components/common/Pagination";
 import useCities from "../components/hooks/api/useCitites";
 import Select from "react-select";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
+import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
 const LocalProducts = () => {
-  const [t] = useTranslation();
+  const { t, i18n } = useTranslation();
   const [name, setName] = useState("");
   const [selectedCity, setSelectedCity] = useState(null);
   const { isLoading, data } = useAlternativeBrands(name, selectedCity);
@@ -100,6 +102,17 @@ const LocalProducts = () => {
               />
             </div>
           ) : null}
+          <Link
+            to="/add-product"
+            className="bg-mainColor p-3  rounded-lg w-[180px] capitalize text-white flex items-center justify-center gap-4 mx-auto mt-8"
+          >
+            <p>{t("Add an alternative")}</p>
+            {i18n.language === "ar" ? (
+              <FaArrowLeftLong size={20} className="mt-1" />
+            ) : (
+              <FaArrowRightLong size={20} className="mt-1" />
+            )}
+          </Link>
           {data?.data?.data?.length > itemsPerPage ? (
             <div className="mt-12">
               <Pagination

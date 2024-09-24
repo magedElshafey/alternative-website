@@ -5,6 +5,8 @@ import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
 import Spinner from "../components/common/Spinner";
 import { useQuery } from "react-query";
 import { request } from "../utils/axios";
+import boycot from "../assets/boycot.png";
+import local from "../assets/true.png";
 const ForeignProductDetails = () => {
   const { i18n, t } = useTranslation();
   const { id } = useParams();
@@ -33,12 +35,19 @@ const ForeignProductDetails = () => {
       ) : (
         <div className="container mx-auto px-8 md:px-16">
           <div className="w-full flex flex-col md:flex-row gap-6 lg:gap-8">
-            <div className="md:w-1/4 relative">
+            <div className="relative w-[190.8px] h-[190.8px]  shadow-lg bg-white rounded-[50%] flex items-center justify-center">
               <img
                 alt={data?.data?.data?.brand_name}
                 src={data?.data?.data?.brand_logo}
-                className="max-h-[250px]"
+                className=" w-[170px] h-[170px]  rounded-[50%] object-contain "
                 loading="lazy"
+              />
+              <img
+                alt="boycot"
+                src={boycot}
+                className={` w-9 h-9 absolute bottom-0 ${
+                  i18n.language === "ar" ? "left-3" : "right-3"
+                }`}
               />
             </div>
             <div className="md:w-3/4">
@@ -74,9 +83,15 @@ const ForeignProductDetails = () => {
                   <p className="roboto-bold text-lg md:text-xl">
                     {t("country")}
                   </p>
-                  <p className="roboto-bold text-lg md:text-xl text-mainColor">
-                    {data?.data?.data?.brand_origin_country?.name}
-                  </p>
+                  <div className="flex items-center justify-center gap-3">
+                    <img
+                      src={data?.data?.data?.brand_origin_country?.flag}
+                      alt={data?.data?.data?.brand_name}
+                    />
+                    <p className="roboto-bold text-lg md:text-xl text-mainColor">
+                      {data?.data?.data?.brand_origin_country?.name}
+                    </p>
+                  </div>
                 </div>
               </div>
               {data?.data?.data?.brandAlternatives?.length ? (
@@ -88,19 +103,30 @@ const ForeignProductDetails = () => {
                     {data?.data?.data?.brandAlternatives
                       .slice(1, 5)
                       ?.map((item, index) => (
-                        <Link key={index} to={`/foreign/${item?.id}`}>
+                        <Link
+                          key={index}
+                          to={`/foreign/${item?.id}`}
+                          className="relative w-[120.8px] h-[120.8px]  shadow-lg bg-white rounded-[50%] flex items-center justify-center gap-4 mb-8"
+                        >
                           <img
                             loading="lazy"
                             alt={item?.brand_name}
                             src={item?.brand_logo}
-                            className="w-[80px] h-[80px] rounded-[50%] object-contain"
+                            className=" w-[100px] h-[100px]  rounded-[50%] object-contain "
+                          />
+                          <img
+                            alt="true"
+                            src={local}
+                            className={` w-8 h-8 absolute bottom-0 ${
+                              i18n.language === "ar" ? "left-3" : "right-3"
+                            }`}
                           />
                         </Link>
                       ))}
                   </div>
                   <Link
                     to="/add-product"
-                    className="bg-mainColor p-3   rounded-lg w-[250px] capitalize text-white flex items-center justify-center gap-4"
+                    className="bg-mainColor p-3   rounded-lg w-[250px] capitalize text-white flex items-center justify-center gap-4 mx-auto"
                   >
                     <p>{t("add alternative")}</p>
                     {i18n.language === "ar" ? (

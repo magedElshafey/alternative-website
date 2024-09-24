@@ -26,19 +26,19 @@ const Products = ({ isHome, data, isLocal, title }) => {
           ? t(title)
           : t("Popular Foregin Brands")}
       </p>
-      <div className="mt-8 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3  justify-center">
+      <div className="mt-8 flex items-center  gap-6 md:gap-8 lg:gap-12 flex-wrap">
         {isHome
           ? data?.slice(0, 12).map((item, index) => (
               <div key={index}>
                 <Link
                   to={`${isLocal ? "/local" : "/foreign"}/${item.id}`}
-                  className=" relative w-[100px] h-[100px] md:w-[120px] md:h-[120px] shadow-lg bg-white rounded-[50%] flex items-center justify-center mx-auto"
+                  className="relative w-[190.8px] h-[190.8px]  shadow-lg bg-white rounded-[50%] flex items-center justify-center mx-auto "
                 >
                   <img
                     src={item?.brand_logo}
                     alt={item?.brand_name}
                     loading="lazy"
-                    className=" w-[90px] h-[90px]  md:w-[110px] md:h-[110px] object-contain rounded-[50%]"
+                    className=" w-[170px] h-[170px]  rounded-[50%] object-contain "
                   />
                   {isLocal ? (
                     <img
@@ -115,9 +115,7 @@ const Products = ({ isHome, data, isLocal, title }) => {
         <div className="flex items-center justify-center">
           <Link
             to={isLocal ? "/local-products" : "/foreign-products"}
-            className={`${
-              isLocal ? "bg-mainColor" : "bg-redColor"
-            } p-3 mt-12 rounded-lg min-w-[180px] capitalize text-white flex items-center justify-center gap-4`}
+            className={` bg-mainColor p-3 mt-12 rounded-lg min-w-[180px] capitalize text-white flex items-center justify-center gap-4`}
           >
             <p>{t("show more")}</p>
             {i18n.language === "ar" ? (

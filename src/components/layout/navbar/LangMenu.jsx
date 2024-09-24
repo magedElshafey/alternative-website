@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
+import { IoLanguageOutline } from "react-icons/io5";
 
 const LangMenu = () => {
   const { t, i18n } = useTranslation();
@@ -41,6 +42,7 @@ const LangMenu = () => {
         }}
         className="flex items-center cursor-pointer gap-1 text-white "
       >
+        <IoLanguageOutline />
         <p>{t(i18n.language)}</p>
         <MdOutlineKeyboardArrowDown />
       </div>
