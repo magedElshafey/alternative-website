@@ -5,7 +5,7 @@ import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { CiUser } from "react-icons/ci";
 import { MdOutlinePhoneAndroid } from "react-icons/md";
-import { CiLogout } from "react-icons/ci";
+import { IoLogOut } from "react-icons/io5";
 import { MdDelete } from "react-icons/md";
 import { request } from "../utils/axios";
 import { useQuery, useMutation, useQueryClient } from "react-query";
@@ -328,190 +328,94 @@ const EditAccount = () => {
       {isLoading ? (
         <Spinner />
       ) : (
-        <div className="bg-white shadow-xl w-full md:w-[80%] mx-auto  rounded-xl p-6">
+        <div className="bg-white shadow-xl w-full rounded-lg py-8 px-12">
           <p className="text-xl md:text-2xl  text-mainColor roboto-black text-center mb-8">
             {t("Edit Profile Account")}
           </p>
-          <input
-            type="file"
-            accept="image/*"
-            style={{ display: "none" }}
-            ref={inputRef}
-            onChange={handlePhotoChange}
-          />
-          <div className="w-full flex flex-col md:flex-row md:items-center mb-8 gap-3 ">
-            {/**img */}
-            {!selectedPhoto ? (
-              <div className="w-[120px] h-[120px] rounded-[50%] relative flex items-center gap-2">
-                <img
-                  alt="avatar"
-                  src={previewUrl}
-                  loading="lazy"
-                  className="w-full h-full rounded-[50%]"
-                />
-                <FaCamera
-                  size={20}
-                  className=" absolute bottom-0 right-[15px] cursor-pointer text-slate-400"
-                  onClick={() => inputRef.current.click()}
-                />
-              </div>
-            ) : (
-              <div className="w-[120px] h-[120px] rounded-[50%] relative flex items-center gap-2">
-                <img
-                  alt="avatar"
-                  src={selectedPhoto ? profilePhoto : previewUrl}
-                  loading="lazy"
-                  className="w-full h-full rounded-[50%]"
-                />
-                <FaCamera
-                  size={20}
-                  className=" absolute bottom-0 right-[15px] cursor-pointer text-slate-400"
-                  onClick={() => inputRef.current.click()}
-                />
-              </div>
-            )}
-
-            {/* name and email*/}
-            <div className="flex flex-col gap-2">
-              <p className="text-md md:text-lg lg:text-xl xl:text-2xl roboto-black">
-                {data?.data?.data?.name}
-              </p>
-              <p className="text-slate-500 lowercase roboto-medium">
-                {data?.data?.data?.email}
-              </p>
-            </div>
-          </div>
-
-          {role === "individual" ? (
-            <>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-                <div>
-                  <AuthInput
-                    icon={<CiUser size={20} />}
-                    type="text"
-                    placeholder={t("full name")}
-                    isPassword={false}
-                    value={name}
-                    onChange={handleNameChange}
-                    error={nameError}
+          <div className="w-full flex flex-col lg:flex-row gap-4 items-center justify-between mb-4">
+            <div className="flex flex-col md:flex-row gap-4 items-center">
+              <input
+                type="file"
+                accept="image/*"
+                style={{ display: "none" }}
+                ref={inputRef}
+                onChange={handlePhotoChange}
+              />
+              {!selectedPhoto ? (
+                <div className="w-[120px] h-[120px] rounded-[50%] relative flex items-center gap-2">
+                  <img
+                    alt="avatar"
+                    src={previewUrl}
+                    loading="lazy"
+                    className="w-full h-full rounded-[50%]"
                   />
-                </div>
-                <div dir="rtl" className="p-0">
-                  <AuthInput
-                    icon={<MdOutlinePhoneAndroid size={20} />}
-                    type="text"
-                    placeholder={t("phone number")}
-                    isPassword={false}
-                    value={phone}
-                    onChange={handlePhoneChange}
-                    error={phoneError}
-                  />
-                </div>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-                <div>
-                  <AuthInput
-                    icon={<MdEmail size={20} />}
-                    type="email"
-                    placeholder={t("email")}
-                    isPassword={false}
-                    value={email}
-                    error={emailError}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                </div>
-              </div>
-              {loadingUpdateProfile ? (
-                <div className="w-full flex justify-center  my-5">
-                  <div className="w-[200px]">
-                    <LoadingBtn />
+                  <div
+                    onClick={() => inputRef.current.click()}
+                    className="flex items-center justify-center  absolute bottom-0 right-[6px] cursor-pointer w-10 h-10 rounded-[50%] bg-mainColor text-white"
+                  >
+                    <FaCamera size={20} />
                   </div>
                 </div>
               ) : (
-                <div className="flex  items-center justify-center  gap-3 flex-wrap my-5">
-                  <button
-                    onClick={updateProfile}
-                    className="text-white roboto-bold  flex items-center justify-center rounded-lg  bg-mainColor py-2 px-3 w-[180px] capitalize"
+                <div className="w-[120px] h-[120px] rounded-[50%] relative flex items-center gap-2">
+                  <img
+                    alt="avatar"
+                    src={selectedPhoto ? profilePhoto : previewUrl}
+                    loading="lazy"
+                    className="w-full h-full rounded-[50%]"
+                  />
+                  <div
+                    onClick={() => inputRef.current.click()}
+                    className="flex items-center justify-center  absolute bottom-0 right-[6px] cursor-pointer w-10 h-10 rounded-[50%] bg-mainColor text-white"
                   >
-                    {t("save changes")}
-                  </button>
-                  <button className="text-mainColor roboto-bold bg-white flex items-center justify-center rounded-lg border border-mainColor py-2 px-3 w-[180px] md:w-[150px] capitalize">
-                    {t("cancel")}
-                  </button>
+                    <FaCamera size={20} />
+                  </div>
                 </div>
               )}
-
-              <p className="text-md md:text-lg lg:text-xl xl:text-2xl text-mainColor font-bold  mb-3">
-                {t("change password")}
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-3">
-                <div>
-                  <AuthInput
-                    icon={<RiLockPasswordFill size={20} />}
-                    type="password"
-                    placeholder={t("current password")}
-                    isPassword={true}
-                    value={currentPassword}
-                    error={currentPasswordError}
-                    onChange={handleCurrentPasswordChange}
-                  />
-                </div>
+              <div className="flex flex-col">
+                <p className="text-md md:text-lg lg:text-xl xl:text-2xl roboto-black">
+                  {data?.data?.data?.name}
+                </p>
+                <p className="text-slate-500 lowercase roboto-medium">
+                  {data?.data?.data?.email}
+                </p>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <AuthInput
-                    icon={<RiLockPasswordFill size={20} />}
-                    type="password"
-                    placeholder={t("new password")}
-                    isPassword={true}
-                    value={newPassword}
-                    error={newPasswordError}
-                    onChange={handleNewPasswordChange}
-                  />
+            </div>
+            <div className="flex  items-center justify-center  gap-3 flex-wrap">
+              <button
+                onClick={() => navigate("/")}
+                className="text-mainColor roboto-bold bg-white flex items-center justify-center  border border-mainColor py-2 px-3 w-[180px] md:w-[150px] capitalize"
+              >
+                {t("cancel")}
+              </button>
+              {loadingUpdateProfile ? (
+                <div className="text-white roboto-bold  flex items-center justify-center   bg-mainColor  w-[180px] capitalize">
+                  <LoadingBtn />
                 </div>
-                <div>
-                  <AuthInput
-                    icon={<RiLockPasswordFill size={20} />}
-                    type="password"
-                    placeholder={t("confirm password")}
-                    isPassword={true}
-                    value={confirmPassword}
-                    error={confirmPasswordError}
-                    onChange={handleConfrimPasswordChange}
-                  />
-                </div>
-              </div>
-              <div className="flex  items-center justify-center  gap-3 flex-wrap my-5">
-                {loadingUpdatePassword ? (
-                  <div className="w-full flex justify-center">
-                    <div className=" w-[180px]">
-                      <LoadingBtn />
-                    </div>
-                  </div>
-                ) : (
-                  <button
-                    onClick={handleUpdatePasswordClick}
-                    className="text-white roboto-bold  flex items-center justify-center rounded-lg  bg-mainColor py-2 px-3 w-[180px] capitalize"
-                  >
-                    {t("change password")}
-                  </button>
-                )}
-              </div>
-            </>
-          ) : (
-            <>
-              <div className="w-full">
+              ) : (
+                <button
+                  onClick={updateProfile}
+                  className="text-white roboto-bold  flex items-center justify-center   bg-mainColor py-2 px-3 w-[180px] capitalize"
+                >
+                  {t("save changes")}
+                </button>
+              )}
+            </div>
+          </div>
+          {role === "individual" ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
+              <div>
                 <AuthInput
                   icon={<CiUser size={20} />}
                   type="text"
-                  placeholder={t("Organization Name")}
+                  placeholder={t("full name")}
                   isPassword={false}
                   value={name}
                   onChange={handleNameChange}
                   error={nameError}
                 />
               </div>
-              <div className="w-full">
+              <div dir="ltr" className="p-0">
                 <AuthInput
                   icon={<MdOutlinePhoneAndroid size={20} />}
                   type="text"
@@ -522,7 +426,7 @@ const EditAccount = () => {
                   error={phoneError}
                 />
               </div>
-              <div className="w-full ">
+              <div>
                 <AuthInput
                   icon={<MdEmail size={20} />}
                   type="email"
@@ -533,6 +437,161 @@ const EditAccount = () => {
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
+              <div>
+                <AuthInput
+                  icon={<CiUser size={20} />}
+                  type="text"
+                  placeholder={t("Organization Name")}
+                  isPassword={false}
+                  value={name}
+                  onChange={handleNameChange}
+                  error={nameError}
+                />
+              </div>
+              <div>
+                <AuthInput
+                  icon={<MdOutlinePhoneAndroid size={20} />}
+                  type="text"
+                  placeholder={t("phone number")}
+                  isPassword={false}
+                  value={phone}
+                  onChange={handlePhoneChange}
+                  error={phoneError}
+                />
+              </div>
+              <div>
+                <AuthInput
+                  icon={<MdEmail size={20} />}
+                  type="email"
+                  placeholder={t("email")}
+                  isPassword={false}
+                  value={email}
+                  error={emailError}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+            </div>
+          )}
+          <div className="mt-8 lg:mt-12">
+            <p className="text-md md:text-lg lg:text-xl xl:text-2xl text-mainColor font-bold  mb-3 text-center">
+              {t("change password")}
+            </p>
+            <div className="w-full md:w-1/2">
+              <AuthInput
+                icon={<RiLockPasswordFill size={20} />}
+                type="password"
+                placeholder={t("current password")}
+                isPassword={true}
+                value={currentPassword}
+                error={currentPasswordError}
+                onChange={handleCurrentPasswordChange}
+              />
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-3">
+              <div>
+                <AuthInput
+                  icon={<RiLockPasswordFill size={20} />}
+                  type="password"
+                  placeholder={t("new password")}
+                  isPassword={true}
+                  value={newPassword}
+                  error={newPasswordError}
+                  onChange={handleNewPasswordChange}
+                />
+              </div>
+              <div>
+                <AuthInput
+                  icon={<RiLockPasswordFill size={20} />}
+                  type="password"
+                  placeholder={t("confirm password")}
+                  isPassword={true}
+                  value={confirmPassword}
+                  error={confirmPasswordError}
+                  onChange={handleConfrimPasswordChange}
+                />
+              </div>
+            </div>
+            <div>
+              {loadingUpdatePassword ? (
+                <div>
+                  <div className=" w-[180px]">
+                    <LoadingBtn />
+                  </div>
+                </div>
+              ) : (
+                <button
+                  onClick={handleUpdatePasswordClick}
+                  className="text-white roboto-bold  flex items-center justify-center   bg-mainColor py-2 px-3 w-[180px] capitalize"
+                >
+                  {t("change password")}
+                </button>
+              )}
+            </div>
+            <div className="w-full flex items-center gap-4 flex-wrap justify-center lg:justify-start mt-4 lg:mt-6">
+              <button
+                type="button"
+                onClick={handleLogOutClick}
+                disabled={loadingLogout}
+                className="flex items-center justify-center gap-1 capitalize py-2 bg-white text-redColor border border-redColor w-[180px] "
+              >
+                <IoLogOut size={20} />
+                <p>{t("logout")}</p>
+              </button>
+              <button
+                onClick={handleDeleteClick}
+                className="flex items-center py-2 bg-redColor text-white justify-center gap-1 capitalize  w-[180px] "
+              >
+                <MdDelete size={20} />
+                <p>{t("delete account")}</p>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
+
+export default EditAccount;
+/**
+ *    <div className="bg-white shadow-xl w-full md:w-[80%] mx-auto  rounded-xl p-6 min-h-screen">
+         
+         
+          <div className="w-full flex flex-col md:flex-row md:items-center mb-8 gap-3 ">
+          
+            
+
+         
+          
+          </div>
+
+          {role === "individual" ? (
+            <>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+               
+               
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+               
+              </div>
+              {
+              ) : (
+              
+              )}
+
+            
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-3">
+               
+              </div>
+            
+             
+            </>
+          ) : (
+            <>
+            
               {loadingUpdateProfile ? (
                 <div className="w-full flex justify-center my-5">
                   <div className=" w-[180px] ">
@@ -604,34 +663,6 @@ const EditAccount = () => {
             </>
           )}
 
-          <div className="w-full   flex items-center gap-4 flex-wrap justify-center lg:justify-end mt-8 lg:mt-0 ">
-            <button
-              type="button"
-              onClick={handleLogOutClick}
-              disabled={loadingLogout}
-              className="flex items-center justify-center gap-1 capitalize py-2 bg-white text-redColor border border-redColor w-[180px] rounded-lg"
-            >
-              <CiLogout size={20} />
-              <p>{t("logout")}</p>
-            </button>
-            <button
-              onClick={handleDeleteClick}
-              className="flex items-center py-2 bg-redColor text-white justify-center gap-1 capitalize  w-[180px] rounded-lg "
-            >
-              <MdDelete size={20} />
-              <p>{t("delete account")}</p>
-            </button>
-            <Link
-              className="py-2 px-4 bg-mainColor text-white  flex items-center justify-center rounded-lg w-[180px]"
-              to="/"
-            >
-              {t("back to home")}
-            </Link>
-          </div>
+    
         </div>
-      )}
-    </>
-  );
-};
-
-export default EditAccount;
+ */

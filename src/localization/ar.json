@@ -110,5 +110,10 @@
   "indvidual": "أفراد",
   "orgnization": "مؤسسة",
   "back to home": "العودة الي الرئيسية",
-  "Add an alternative": "إضافة منتج بديل"
+  "Add an alternative": "إضافة منتج بديل",
+  "you need to login first to add a product": "يجب تسجيل الدخول اولا لكي تتمكن من إضافة منتج بديل",
+  "you need to login as an orgnization": "تحتاج الي تسجيل الدخول ك مؤسسة و ليس ك افراد",
+  "you need to login as an indvidual": "تحتاج الي تسجيل الدخول ك افراد و ليس ك مؤسسة",
+  "agree": "موافق",
+  "Add Related Product": "إضافة منتجات ذات صلة"
 }

@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { logout } from "../../../store/auth";
 import { request } from "../../../utils/axios";
 import { useMutation } from "react-query";
+import Swal from "sweetalert2";
 const AuthBtns = (isSidebar) => {
   const { t, i18n } = useTranslation();
   const [showMenu, setShowMenu] = useState(false);
@@ -37,10 +38,16 @@ const AuthBtns = (isSidebar) => {
   const { isLoading, mutate } = useMutation(handleLogout, {
     onSuccess: (data) => {
       if (data?.data?.status) {
-        toast.success(data?.data?.message);
-        dispatch(logout());
-        window.location.reload();
-        navigate("/");
+        Swal.fire({
+          icon: "success",
+          title: data?.data?.message,
+        }).then((res) => {
+          if (res.isConfirmed) {
+            navigate("/");
+            dispatch(logout());
+            window.location.reload();
+          }
+        });
       } else {
         toast.error(data?.response?.data?.message);
       }
@@ -77,32 +84,33 @@ const AuthBtns = (isSidebar) => {
                 i18n.language === "ar" ? "left-0" : "right-0"
               }`}
             >
-              <Link
-                onClick={() => setShowMenu(false)}
-                to="/auth/edit-account"
-                className="w-full flex items-center justify-between text-mainColor mb-5"
-              >
-                <div className="flex items-center gap-2">
+              <div className="w-full flex items-center justify-between text-mainColor mb-5">
+                <Link
+                  onClick={() => setShowMenu(false)}
+                  to="/profile/edit-account"
+                  className="flex items-center gap-2"
+                >
                   <FaUserAlt size={15} />
                   <p>{t("edit profile account")}</p>
-                </div>
+                </Link>
                 {i18n.language === "ar" ? (
                   <IoIosArrowBack size={15} />
                 ) : (
                   <IoIosArrowForward size={15} />
                 )}
-              </Link>
-              <div
-                onClick={() => setShowMenu(false)}
-                className="w-full flex items-center justify-between text-redColor cursor-pointer"
-              >
-                <div
-                  className="flex items-center gap-2 cursor-pointer"
-                  onClick={handleLogOutClick}
+              </div>
+
+              <div className="w-full flex items-center justify-between text-redColor">
+                <button
+                  className="flex items-center gap-2 cursor-pointer w-fit capitalize"
+                  onClick={() => {
+                    handleLogOutClick();
+                    setShowMenu(false);
+                  }}
                 >
                   <IoIosLogOut size={15} />
                   <p>{t("logout")}</p>
-                </div>
+                </button>
                 {i18n.language === "ar" ? (
                   <IoIosArrowBack size={15} />
                 ) : (

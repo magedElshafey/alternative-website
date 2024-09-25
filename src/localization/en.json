@@ -105,5 +105,10 @@
   "new password": "new password",
   "no data": "no data found",
   "recently viewd": "recently viewd",
-  "Add an alternative": "Add an alternative"
+  "Add an alternative": "Add an alternative",
+  "you need to login first to add a product": "you need to login first to add a product",
+  "you need to login as an orgnization": "you need to login as an orgnization",
+  "you need to login as an indvidual": "you need to login as an indvidual",
+  "agree": "agree",
+  "Add Related Product": "Add Related Product"
 }

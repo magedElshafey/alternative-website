@@ -98,7 +98,7 @@ const LocalProductDetails = () => {
                 to="/add-product"
                 className="bg-mainColor p-3 mt-12 mx-auto rounded-lg w-[250px] capitalize text-white flex items-center justify-center gap-4"
               >
-                <p>{t("add alternative")}</p>
+                <p>{t("Add Related Product")}</p>
                 {i18n.language === "ar" ? (
                   <FaArrowLeftLong size={20} className="mt-1" />
                 ) : (

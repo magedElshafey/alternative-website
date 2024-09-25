@@ -96,7 +96,7 @@ const ProductTrial = () => {
       </Link>
       <div className="flex flex-col items-center justify-center gap-2 mb-8">
         <p className=" roboto-bold text-lg md:text-xl lg:text-2xl xl:text-3xl text-mainColor">
-          {t("I trird the product")}
+          {t("I tried the product")}
         </p>
         <p className="roboto-medium text-sm md:text-md lg:text-lg xl:text-xl">
           {t("Make sure that the information added is correct")}
@@ -120,8 +120,8 @@ const ProductTrial = () => {
           />
         </div>
         <div className="w-full">
-          <div className="mb-4">
-            <AuthInput
+          <div className="w-full  mb-4">
+            <TextArea
               icon={<FaInfo size={20} />}
               type="text"
               placeholder={t("company information")}

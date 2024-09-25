@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 // layouts
 import WebsiteLayout from "../templates/websiteLayout/WebsiteLayout.jsx";
 // pages
@@ -96,6 +96,25 @@ const router = createBrowserRouter([
         path: "new-password",
         element: <NewPassword />,
       },
+      {
+        path: "edit-account",
+        element: <EditAccount />,
+      },
+    ],
+  },
+  {
+    path: "/profile",
+    errorElement: <NotFound />,
+    element: (
+      <div className="w-screen h-screen bg-mainColor">
+        <div className="container mx-auto p-8">
+          <div className="w-full h-full flex items-center justify-center">
+            <Outlet />
+          </div>
+        </div>
+      </div>
+    ),
+    children: [
       {
         path: "edit-account",
         element: <EditAccount />,

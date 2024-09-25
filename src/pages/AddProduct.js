@@ -2,11 +2,16 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ImUserTie } from "react-icons/im";
 import { HiUser } from "react-icons/hi2";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
+import { useSelector } from "react-redux";
+import Swal from "sweetalert2";
 const AddProduct = () => {
   const { t, i18n } = useTranslation();
   const [activeId, setActiveId] = useState(0);
+  const { alternativeLogin, userData } = useSelector(
+    (state) => state.authSlice
+  );
   const types = [
     {
       title: "I am a local product owner",
@@ -17,7 +22,50 @@ const AddProduct = () => {
       icon: <HiUser size={70} />,
     },
   ];
-
+  const navigate = useNavigate();
+  const handleAddProductClick = () => {
+    if (!alternativeLogin) {
+      Swal.fire({
+        title: t("you need to login first to add a product"),
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#009639",
+        cancelButtonColor: "#ED2E38",
+        confirmButtonText: t("login"),
+        cancelButtonText: t("cancel"),
+      }).then((res) => {
+        if (res.isConfirmed) {
+          navigate("/auth/login");
+        } else {
+          return;
+        }
+      });
+    } else {
+      if (activeId === 0 && userData?.type === "individual") {
+        Swal.fire({
+          icon: "error",
+          title: t("you need to login as an orgnization"),
+          showCancelButton: false,
+          timer: 1000,
+          showConfirmButton: false,
+        });
+        return;
+      } else if (activeId === 0 && userData?.type !== "individual") {
+        navigate("/add-product/owner");
+      } else if (activeId === 1 && userData?.type !== "individual") {
+        Swal.fire({
+          icon: "error",
+          showCancelButton: false,
+          title: t("you need to login as an indvidual"),
+          timer: 1000,
+          showConfirmButton: false,
+        });
+        return;
+      } else {
+        navigate("/add-product/trial");
+      }
+    }
+  };
   return (
     <div className="container mx-auto px-8 md:px-16">
       <div className="flex flex-col items-center justify-center gap-2 mb-8">
@@ -45,8 +93,8 @@ const AddProduct = () => {
         ))}
       </div>
       <div className="w-full flex justify-center">
-        <Link
-          to={activeId === 0 ? "/add-product/owner" : "/add-product/trial"}
+        <button
+          onClick={handleAddProductClick}
           className="bg-mainColor p-3  rounded-lg w-[250px] capitalize text-white flex items-center justify-center gap-4"
         >
           <p>{t("next")}</p>
@@ -55,7 +103,7 @@ const AddProduct = () => {
           ) : (
             <FaArrowRightLong size={20} className="mt-1" />
           )}
-        </Link>
+        </button>
       </div>
     </div>
   );
