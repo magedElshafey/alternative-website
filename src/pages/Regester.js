@@ -18,7 +18,7 @@ import { toast } from "react-hot-toast";
 import { useMutation } from "react-query";
 import { request } from "../utils/axios";
 import { useDispatch } from "react-redux";
-import { regester, addToken } from "../store/auth";
+import { handleUserLogin, addToken } from "../store/auth";
 import { useNavigate } from "react-router-dom";
 const Regester = () => {
   const {
@@ -71,7 +71,10 @@ const Regester = () => {
         toast.success(data?.data?.message);
         navigate("/");
         // dispatch(regester(data?.data?.user));
+        navigate("/");
+        dispatch(handleUserLogin(data?.data?.user));
         dispatch(addToken(data?.data?.token));
+
         setConfrim("");
         setName("");
         setPhone("");
