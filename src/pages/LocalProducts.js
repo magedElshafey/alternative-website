@@ -13,7 +13,7 @@ const LocalProducts = () => {
   const [name, setName] = useState("");
   const [selectedCity, setSelectedCity] = useState(null);
   const { isLoading, data } = useAlternativeBrands(name, selectedCity);
-  const itemsPerPage = 30;
+  const itemsPerPage = 10;
   const [currentPage, setCurrentPage] = useState(0);
   useEffect(() => {
     setCurrentPage(0); // Reset to first page when data changes

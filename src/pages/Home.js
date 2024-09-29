@@ -11,6 +11,10 @@ const Home = () => {
   const { isLoading, data } = useAlternativeBrands();
   const { isLoading: loadingForegin, data: foregin } = useForeginBrands();
   const { data: global } = useGlobalContext();
+  console.log(
+    "foregin?.data?.recently_viewed_products?.length",
+    foregin?.data?.recently_viewed_products?.length
+  );
   return (
     <>
       {isLoading || loadingForegin ? (
