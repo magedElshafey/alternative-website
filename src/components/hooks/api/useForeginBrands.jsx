@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import { request } from "../../../utils/axios";
 import { useTranslation } from "react-i18next";
-const useForeginBrands = (name, selectedCity) => {
+const useForeginBrands = (name, selectedCity, page = 0) => {
   const { i18n } = useTranslation();
   const getForeginBrands = async (name, selectedCity) => {
     let url = "/brands";
@@ -15,19 +15,25 @@ const useForeginBrands = (name, selectedCity) => {
     const params = {};
 
     if (name) {
-      params.country = name;
+      params.country_name = name;
     }
 
     if (selectedCity) {
-      params.location_id = selectedCity;
+      params.country_id = selectedCity;
     }
+    params.page = page + 1;
     return await request({
       url,
+
       params,
     });
   };
-  return useQuery(["foregin-brands", name, selectedCity], () =>
-    getForeginBrands(name, selectedCity)
+  return useQuery(
+    ["foregin-brands", name, selectedCity, page],
+    () => getForeginBrands(name, selectedCity, page),
+    {
+      keepPreviousData: true, // للحفاظ على البيانات السابقة أثناء تحميل الصفحة الجديدة
+    }
   );
 };
 

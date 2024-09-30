@@ -530,19 +530,19 @@ const EditAccount = () => {
                 </button>
               )}
             </div>
-            <div className="w-full flex items-center gap-4 flex-wrap justify-center lg:justify-start mt-4 lg:mt-6">
+            <div className="w-full flex items-center gap-4 flex-wrap  mt-4 lg:mt-6">
               <button
                 type="button"
                 onClick={handleLogOutClick}
                 disabled={loadingLogout}
-                className="flex items-center justify-center gap-1 capitalize py-2 bg-white text-redColor border border-redColor w-[180px] "
+                className="flex items-center justify-center gap-1 capitalize py-2 px-3 bg-white text-redColor border border-redColor w-[180px] "
               >
                 <IoLogOut size={20} />
                 <p>{t("logout")}</p>
               </button>
               <button
                 onClick={handleDeleteClick}
-                className="flex items-center py-2 bg-redColor text-white justify-center gap-1 capitalize  w-[180px] "
+                className="flex items-center py-2 px-3 bg-redColor text-white justify-center gap-1 capitalize  w-[180px] "
               >
                 <MdDelete size={20} />
                 <p>{t("delete account")}</p>

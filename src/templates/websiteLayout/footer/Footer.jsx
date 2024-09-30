@@ -16,19 +16,19 @@ const Footer = () => {
   return (
     <div className="w-screen bg-mainColor py-4 text-white roboto-regular">
       <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-16 xl:gap-20">
           <div>
             <Logo img={data?.logo} />
             <p className=" text-slate-200 mt-4">
               {t("lorem").substring(0, 60)}
             </p>
           </div>
-          <div>
+          {/* <div>
             <p className="text-white font-bold text-lg md:text-xl  mb-4">
               {t("links")}
             </p>
-            <WbsiteLinks isFlex={false} data={navlinks} isSidebar={false} />
-          </div>
+            <WbsiteLinks isFlex={false} data={navlinks} isSidebar={false} /> 
+          </div> */}
           <div>
             <p className="text-white font-bold text-lg md:text-xl mb-4">
               {t("contact us")}

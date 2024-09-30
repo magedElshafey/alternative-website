@@ -33,12 +33,12 @@ const LocalProductDetails = () => {
         <Spinner />
       ) : (
         <div className="container mx-auto px-8 md:px-16">
-          <div className="w-full flex flex-col items-center md:items-start md:flex-row gap-4 md:gap-2">
-            <div className="relative w-[190.8px] h-[190.8px]  shadow-lg bg-white rounded-[50%] flex items-center justify-center ">
+          <div className="w-full flex flex-col items-center md:items-start md:flex-row gap-4 md:gap-2 py-4">
+            <div className="relative w-[140px] md:w-[190.8px] h-[140px] md:h-[190.8px]  shadow-lg bg-white rounded-[50%] flex items-center justify-center ">
               <img
                 alt={data?.data?.data?.brand_name}
                 src={data?.data?.data?.brand_logo}
-                className=" w-[170px] h-[170px]  rounded-[50%] object-contain "
+                className=" w-[110px] md:w-[170px] h-[110px] md:h-[170px]  rounded-[50%] object-contain "
                 loading="lazy"
               />
               <img

@@ -14,7 +14,7 @@ const Products = ({ isHome, data, isLocal, title }) => {
       {isLocal ? <AlternativeLabel /> : <BoycotLabel />}
 
       <p
-        className={`text-lg md:text-lg lg:text-xl xl:text-2xl font-bold text-center ${
+        className={`text-lg md:text-lg mt-4 lg:text-xl xl:text-2xl font-bold text-center ${
           isLocal ? "text-mainColor" : "text-redColor"
         }`}
       >
@@ -26,26 +26,115 @@ const Products = ({ isHome, data, isLocal, title }) => {
           ? t(title)
           : t("Popular Foregin Brands")}
       </p>
-      <div className="mt-8 flex items-center  gap-6 md:gap-8 lg:gap-12 flex-wrap">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8 xl:gap-12  mt-8">
+        {isHome
+          ? data.slice(0, 12)?.map((item, index) => (
+              <Link
+                key={index}
+                to={`${isLocal ? "/local" : "/foreign"}/${item.id}`}
+                className=" relative shadow-lg p-2 flex justify-center"
+              >
+                <img
+                  src={item?.brand_logo}
+                  alt={item?.brand_name}
+                  loading="lazy"
+                  className="h-[100px] md:h-[140.8px]"
+                />
+                {isLocal ? (
+                  <img
+                    alt="true"
+                    src={local}
+                    className={` w-8 h-8 absolute bottom-0 ${
+                      i18n.language === "ar" ? "left-1" : "right-1"
+                    }`}
+                  />
+                ) : (
+                  <img
+                    alt="boycot"
+                    src={boycot}
+                    className={` w-9 h-9 absolute bottom-0 ${
+                      i18n.language === "ar" ? "left-1" : "right-1"
+                    }`}
+                  />
+                )}
+                {isLocal ? (
+                  <img
+                    alt="export"
+                    src={exportImg}
+                    className={` w-12 h-12 absolute top-0  ${
+                      i18n.language === "ar" ? "right-1" : "left-1"
+                    }`}
+                  />
+                ) : null}
+              </Link>
+            ))
+          : data?.map((item, index) => (
+              <Link
+                key={index}
+                to={`${isLocal ? "/local" : "/foreign"}/${item.id}`}
+                className=" relative shadow-lg p-2 flex justify-center"
+              >
+                <img
+                  src={item?.brand_logo}
+                  alt={item?.brand_name}
+                  loading="lazy"
+                  className="h-[100px] md:h-[140.8px]"
+                />
+                {isLocal ? (
+                  <img
+                    alt="true"
+                    src={local}
+                    className={` w-8 h-8 absolute bottom-0 ${
+                      i18n.language === "ar" ? "left-1" : "right-1"
+                    }`}
+                  />
+                ) : (
+                  <img
+                    alt="boycot"
+                    src={boycot}
+                    className={` w-9 h-9 absolute bottom-0 ${
+                      i18n.language === "ar" ? "left-1" : "right-1"
+                    }`}
+                  />
+                )}
+                {isLocal ? (
+                  <img
+                    alt="export"
+                    src={exportImg}
+                    className={` w-12 h-12 absolute top-0  ${
+                      i18n.language === "ar" ? "right-1" : "left-1"
+                    }`}
+                  />
+                ) : null}
+              </Link>
+            ))}
+      </div>
+    </div>
+  );
+};
+
+export default Products;
+/**
+ *    <div className="mt-8 flex items-center  gap-6 md:gap-8 lg:gap-12 flex-wrap justify-center lg:justify-center">
         {isHome
           ? data?.slice(0, 12).map((item, index) => (
               <div key={index}>
                 <Link
                   to={`${isLocal ? "/local" : "/foreign"}/${item.id}`}
-                  className="relative w-[190.8px] h-[190.8px]  shadow-lg bg-white rounded-[50%] flex items-center justify-center mx-auto "
+                  className="relative  shadow-lg bg-white "
                 >
                   <img
                     src={item?.brand_logo}
                     alt={item?.brand_name}
                     loading="lazy"
-                    className=" w-[170px] h-[170px]  rounded-[50%] object-contain "
+                    className=" w-[120px] md:w-[170px] h-[100px] md:h-[170px]"
                   />
                   {isLocal ? (
                     <img
                       alt="true"
                       src={local}
                       className={` w-8 h-8 absolute bottom-0 ${
-                        i18n.language === "ar" ? "left-3" : "right-3"
+                        i18n.language === "ar" ? "left-1" : "right-1"
                       }`}
                     />
                   ) : (
@@ -53,7 +142,7 @@ const Products = ({ isHome, data, isLocal, title }) => {
                       alt="boycot"
                       src={boycot}
                       className={` w-9 h-9 absolute bottom-0 ${
-                        i18n.language === "ar" ? "left-3" : "right-3"
+                        i18n.language === "ar" ? "left-1" : "right-1"
                       }`}
                     />
                   )}
@@ -63,7 +152,7 @@ const Products = ({ isHome, data, isLocal, title }) => {
                       alt="export"
                       src={exportImg}
                       className={` w-12 h-12 absolute top-0  ${
-                        i18n.language === "ar" ? "right-3" : "left-3"
+                        i18n.language === "ar" ? "right-1" : "left-1"
                       }`}
                     />
                   ) : null}
@@ -74,20 +163,20 @@ const Products = ({ isHome, data, isLocal, title }) => {
               <Link
                 to={`${isLocal ? "/local" : "/foreign"}/${item.id}`}
                 key={index}
-                className=" relative w-[120px] h-[120px] md:w-[140px] md:h-[140px] shadow-lg bg-white rounded-[50%] flex items-center justify-center mx-auto"
+                className="relative  shadow-lg bg-white "
               >
                 <img
                   src={item?.brand_logo}
                   alt={item?.brand_name}
                   loading="lazy"
-                  className=" w-[110px] h-[110px]  md:w-[130px] md:h-[130px] object-contain rounded-[50%]"
+                  className=" w-[120px] md:w-[170px] h-[100px] md:h-[170px]"
                 />
                 {isLocal ? (
                   <img
                     alt="true"
                     src={local}
                     className={` w-8 h-8 absolute bottom-0 ${
-                      i18n.language === "ar" ? "left-3" : "right-3"
+                      i18n.language === "ar" ? "left-1" : "right-1"
                     }`}
                   />
                 ) : (
@@ -95,7 +184,7 @@ const Products = ({ isHome, data, isLocal, title }) => {
                     alt="boycot"
                     src={boycot}
                     className={` w-9 h-9 absolute bottom-0 ${
-                      i18n.language === "ar" ? "left-3" : "right-3"
+                      i18n.language === "ar" ? "left-1" : "right-1"
                     }`}
                   />
                 )}
@@ -126,8 +215,4 @@ const Products = ({ isHome, data, isLocal, title }) => {
           </Link>
         </div>
       ) : null}
-    </div>
-  );
-};
-
-export default Products;
+ */

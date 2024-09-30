@@ -17,21 +17,16 @@ const Hero = ({
   const { t, i18n } = useTranslation();
   return (
     <div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-8 items-center">
         <div>
-          <p className="text-mainColor font-bold text-xl md:text-2xl lg:text-3xl xl:text-4xl mb-1">
+          <p className="text-mainColor font-bold text-lg md:text-2xl lg:text-3xl  text-center md:text-start mb-3 ">
             {i18n.language === "ar"
               ? arTitle
               : i18n.language === "tr"
               ? trTitle
               : enTitle}
           </p>
-          {/* <p className="text-mainColor font-bold text-xl md:text-2xl lg:text-3xl xl:text-4xl mb-1">
-            {t(heroDetails?.second)}
-          </p> */}
-          {/* <p className="text-redColor font-bold text-xl md:text-2xl lg:text-3xl xl:text-4xl mb-1">
-            {t(heroDetails?.third)}
-          </p> */}
+
           <p className="text-mainColor  mb-3">
             {i18n.language === "ar"
               ? arDesc
@@ -58,7 +53,7 @@ const Hero = ({
               href={appLinks?.android}
               target="_blank"
               rel="noreferrer"
-              className="px-2 py-1 flex items-center justify-center gap-2 border-2 border-mainColor text-mainColor bg-white rounded-md capitalize  min-w-[170px]"
+              className="px-2 py-1 flex items-center justify-center gap-2 border-2 border-mainColor text-mainColor bg-white rounded-md capitalize w-full  md:w-[200px] mb-4 md:mb-0"
             >
               <div>{<FaGooglePlay size={30} />}</div>
               <div>
@@ -72,7 +67,7 @@ const Hero = ({
               href={appLinks?.ios}
               target="_blank"
               rel="noreferrer"
-              className="px-2 py-1 flex items-center justify-center gap-2 border-2 border-mainColor text-mainColor bg-white rounded-md capitalize  min-w-[170px]"
+              className="px-2 py-1 flex items-center justify-center gap-2 border-2 border-mainColor text-mainColor bg-white rounded-md capitalize w-full  md:w-[200px]"
             >
               <div>{<FaApple size={30} />}</div>
               <div>
@@ -89,7 +84,7 @@ const Hero = ({
             alt="hero"
             loading="lazy"
             src={img}
-            className="w-full md:w-[564px] h-[522px] ms-auto"
+            className="w-full md:w-[564px] h-[300px] md:h-[522px] mx-auto md:mx-start ms-auto"
           />
         </div>
       </div>

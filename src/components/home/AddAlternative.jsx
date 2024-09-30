@@ -24,7 +24,7 @@ const AddAlternative = () => {
         </Link>
       </div>
 
-      <img alt="vector" src={add} className="w-full h-[350px]" />
+      <img alt="vector" src={add} className="w-full h-[200px] md:h-[350px]" />
     </div>
   );
 };

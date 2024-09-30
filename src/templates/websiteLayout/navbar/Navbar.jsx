@@ -31,16 +31,16 @@ const Navbar = () => {
         <div className="container mx-auto px-6">
           <div className="w-full flex items-center justify-between">
             <Logo img={data?.logo} />
-            <div className=" hidden md:block ">
+            <div className=" hidden md:flex items-center gap-4 ">
               <WbsiteLinks data={navlinks} isFlex={true} isSidebar={false} />
             </div>
-            <div className=" hidden md:block ">
+
+            <div className="hidden md:flex items-center gap-3 ">
+              <AuthBtns isSidebar={false} />
               <LangMenu />
             </div>
-            <div className="hidden md:block ">
-              <AuthBtns isSidebar={false} />
-            </div>
-            <div className="md:hidden text-white">
+            <div className="flex items-center gap-4 md:hidden text-white">
+              <LangMenu />
               <IoMenu
                 onClick={toggleSidebar}
                 size={40}
@@ -74,10 +74,6 @@ const Navbar = () => {
               />
               <div className="w-full my-8">
                 <AuthBtns isSidebar={true} />
-              </div>
-              <div className="flex items-center gap-4">
-                <p>{t("language")} : </p>
-                <LangMenu />
               </div>
             </div>
           </div>

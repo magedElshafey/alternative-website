@@ -12,7 +12,7 @@ const About = ({ enTtile, arTitle, trTitle }) => {
               alt="about"
               loading="lazy"
               src={aboutDetails.img}
-              className="w-full h-[350px]"
+              className="w-full h-[200px] md:h-[350px]"
             />
           </div>
           <div className="roboto-medium text-mainColor leading-loose">

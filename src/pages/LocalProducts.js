@@ -12,12 +12,14 @@ const LocalProducts = () => {
   const { t, i18n } = useTranslation();
   const [name, setName] = useState("");
   const [selectedCity, setSelectedCity] = useState(null);
-  const { isLoading, data } = useAlternativeBrands(name, selectedCity);
-  const itemsPerPage = 10;
+  const [defaultCity, setDefaultCity] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
-  useEffect(() => {
-    setCurrentPage(0); // Reset to first page when data changes
-  }, [data?.data?.data]);
+  const { isLoading, data } = useAlternativeBrands(
+    name,
+    selectedCity,
+    currentPage
+  );
+  const itemsPerPage = data?.data?.meta?.per_page;
 
   const handlePageChange = (selectedPage) => {
     setCurrentPage(selectedPage);
@@ -27,12 +29,7 @@ const LocalProducts = () => {
       behavior: "smooth",
     });
   };
-  const offset = currentPage * itemsPerPage;
   const { isLoading: loadingCities, data: cities } = useCities();
-
-  const handleChange = (selectedOption) => {
-    setSelectedCity(selectedOption.value);
-  };
   const citiesOptions = cities?.data?.data?.map((item) => ({
     value: item.id,
     label: (
@@ -42,34 +39,67 @@ const LocalProducts = () => {
       </div>
     ),
   }));
-  // useEffect(() => {
-  //   if (!selectedCity && defaultCity) {
-  //     setSelectedCity(defaultCity.value);
-  //   }
-  // }, [defaultCity, selectedCity]);
+
+  useEffect(() => {
+    if (
+      cities &&
+      cities.data &&
+      cities.data.data.length &&
+      selectedCity === null
+    ) {
+      const firstCity = cities.data.data[0];
+      setDefaultCity({
+        value: firstCity.id,
+        label: (
+          <div
+            style={{ display: "flex", alignItems: "center", border: "none" }}
+          >
+            <img src={firstCity.flag} alt="flag" style={{ width: 20 }} />
+            <span style={{ marginLeft: 8 }}>{firstCity.name}</span>
+          </div>
+        ),
+      });
+    }
+  }, [cities, selectedCity]);
+
+  const handleChange = (selectedOption) => {
+    setSelectedCity(selectedOption.value);
+  };
+
   const handleNameChange = (e) => setName(e.target.value);
+  // زرار Reset
+  const handleReset = () => {
+    setName(""); // إعادة تعيين حقل الاسم
+    setSelectedCity(null);
+  };
+
   return (
     <>
       {loadingCities ? (
         <Spinner />
       ) : (
-        <div>
-          <div className="w-full flex items-center gap-5 p-2 bg-white rounded-lg border shadow mb-8  ">
+        <div className="relative">
+          <div className="w-full flex items-center gap-5 p-2 bg-white rounded-lg border shadow mb-8 absolute top-[-50px] z-50 ">
             <Select
               options={citiesOptions}
               onChange={handleChange}
-              value={citiesOptions.find(
-                (option) => option.value === selectedCity
-              )}
+              value={
+                selectedCity
+                  ? citiesOptions.find(
+                      (option) => option.value === selectedCity
+                    )
+                  : defaultCity
+              }
+              placeholder={t("Select City")}
               styles={{
                 control: (provided) => ({
                   ...provided,
-                  border: "none", // إزالة الـ border
-                  boxShadow: "none", // إزالة الـ outline عند التركيز
+                  border: "none",
+                  boxShadow: "none",
                 }),
                 dropdownIndicator: (provided) => ({
                   ...provided,
-                  color: "gray", // تخصيص لون السهم
+                  color: "gray",
                 }),
               }}
             />
@@ -77,21 +107,38 @@ const LocalProducts = () => {
               className="flex-1 border-none focus:outline-none"
               value={name}
               onChange={handleNameChange}
+              placeholder={t("Enter Name")}
             />
+            <button
+              onClick={handleReset}
+              className="bg-red-500 text-white p-2 rounded"
+            >
+              {t("Reset")}
+            </button>
           </div>
-          {data?.data?.data?.length ? (
-            <Products
-              isLocal={true}
-              isHome={false}
-              data={data?.data?.data.slice(offset, offset + itemsPerPage) || []}
-            />
+          {isLoading ? (
+            <div className="flex items-center justify-center h-80">
+              {/* Animated Loader */}
+              <div className="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-16 w-16"></div>
+            </div>
           ) : (
-            <div className="w-full h-full flex items-center justify-center">
-              <p className="text-mainColor text-lg md:text-xl lg:text-2xl xl:text-3xl font-extrabold">
-                {t("no data")}
-              </p>
+            <div>
+              {data?.data?.data?.length ? (
+                <Products
+                  isLocal={true}
+                  isHome={false}
+                  data={data?.data?.data || []}
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center ">
+                  <p className="text-mainColor text-lg md:text-xl lg:text-2xl xl:text-3xl font-extrabold">
+                    {t("no data")}
+                  </p>
+                </div>
+              )}
             </div>
           )}
+
           {data?.data?.recently_viewed_products?.length ? (
             <div className="my-12">
               <Products
@@ -104,7 +151,7 @@ const LocalProducts = () => {
           ) : null}
           <Link
             to="/add-product"
-            className="bg-mainColor p-3  rounded-lg w-[180px] capitalize text-white flex items-center justify-center gap-4 mx-auto mt-8"
+            className="bg-mainColor p-3  rounded-lg min-w-[180px] max-w-fit capitalize text-white flex items-center justify-center gap-4 mx-auto mt-12"
           >
             <p>{t("Add an alternative")}</p>
             {i18n.language === "ar" ? (
@@ -113,11 +160,11 @@ const LocalProducts = () => {
               <FaArrowRightLong size={20} className="mt-1" />
             )}
           </Link>
-          {data?.data?.data?.length > itemsPerPage ? (
+          {data?.data?.meta?.total > 1 ? (
             <div className="mt-12">
               <Pagination
                 itemsPerPage={itemsPerPage}
-                totalItems={data?.data?.data.length}
+                totalItems={data?.data?.meta.total}
                 onPageChange={handlePageChange}
                 currentPage={currentPage}
               />
