@@ -112,5 +112,6 @@
   "you need to login first to add a product": "ürün eklemek için önce giriş yapmalısınız",
   "you need to login as an orgnization": "kuruluş olarak giriş yapmanız gerekiyor",
   "you need to login as an indvidual": "bireysel olarak giriş yapmalısınız",
-  "Add Related Product": "İlgili Ürünü Ekle"
+  "Add Related Product": "İlgili Ürünü Ekle",
+  "Reset": "Sıfırla"
 }
