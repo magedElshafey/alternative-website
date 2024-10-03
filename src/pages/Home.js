@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Hero from "../components/home/Hero";
 import About from "../components/home/About";
 import Products from "../components/common/Products";
@@ -15,6 +15,8 @@ const Home = () => {
     "foregin?.data?.recently_viewed_products?.length",
     foregin?.data?.recently_viewed_products?.length
   );
+  const [recentlyViewedProducts, setRecentlyViewedProducts] = useState([]);
+
   return (
     <>
       {isLoading || loadingForegin ? (
@@ -50,11 +52,11 @@ const Home = () => {
               isLocal={false}
             />
           </div>
-          {foregin?.data?.recently_viewed_products?.length ? (
+          {recentlyViewedProducts?.length ? (
             <div className="my-12">
               <Products
                 isHome={true}
-                data={foregin?.data?.recently_viewed_products || []}
+                data={recentlyViewedProducts || []}
                 isLocal={false}
                 title="recently viewd"
               />
