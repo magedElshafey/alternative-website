@@ -8,6 +8,7 @@ import Select from "react-select";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
+import { useSelector } from "react-redux";
 const LocalProducts = () => {
   const { t, i18n } = useTranslation();
   const [name, setName] = useState("");
@@ -72,7 +73,7 @@ const LocalProducts = () => {
     setName(""); // إعادة تعيين حقل الاسم
     setSelectedCity(null);
   };
-
+  const { local } = useSelector((state) => state.recentlyViewedSlice);
   return (
     <>
       {loadingCities ? (
@@ -128,6 +129,7 @@ const LocalProducts = () => {
                   isLocal={true}
                   isHome={false}
                   data={data?.data?.data || []}
+                  notShowLabel={true}
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center ">
@@ -139,13 +141,14 @@ const LocalProducts = () => {
             </div>
           )}
 
-          {data?.data?.recently_viewed_products?.length ? (
+          {local?.length ? (
             <div className="my-12">
               <Products
                 isHome={true}
-                data={data?.data?.recently_viewed_products || []}
+                data={local}
                 isLocal={true}
                 title="recently viewd"
+                notShowLabel={true}
               />
             </div>
           ) : null}

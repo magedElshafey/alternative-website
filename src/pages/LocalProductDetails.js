@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
@@ -6,9 +6,13 @@ import Spinner from "../components/common/Spinner";
 import { request } from "../utils/axios";
 import { useQuery } from "react-query";
 import local from "../assets/true.png";
+import { useDispatch } from "react-redux";
+import { addLocalProduct } from "../store/recentlyViewedSlice";
+
 const LocalProductDetails = () => {
   const { i18n, t } = useTranslation();
   const { id } = useParams();
+  const dispatch = useDispatch();
   //   add true icon
   const getProductDetails = async () => {
     let url = `/brandsAlternative/${id}`;
@@ -24,9 +28,20 @@ const LocalProductDetails = () => {
     });
   };
   const { isLoading, data } = useQuery(
-    ["alternative- frproduct-details", id],
+    ["alternative- product-details", id],
     getProductDetails
   );
+  // useEffect(() => {
+  //   ;
+  // }, [dispatch, data]);
+  useEffect(() => {
+    if (data?.status === 200) {
+      dispatch(addLocalProduct(data?.data?.data));
+    } else {
+      return;
+    }
+  }, [data, dispatch]);
+  console.log("data", data?.status);
   return (
     <>
       {isLoading ? (
