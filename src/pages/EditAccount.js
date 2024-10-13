@@ -16,7 +16,7 @@ import Spinner from "../components/common/Spinner";
 import useTextInputValidation from "../components/hooks/validation/useTextInputValidation";
 import useNumberInput from "../components/hooks/validation/useNumberInput";
 import useEmailValidation from "../components/hooks/validation/useEmailValidation";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import usePasswordValidation from "../components/hooks/validation/usePasswordValidation";
 import LoadingBtn from "../components/common/buttons/LoadingBtn";
@@ -75,11 +75,7 @@ const EditAccount = () => {
       reader.readAsDataURL(file);
     }
   };
-  const handleRemovePhoto = () => {
-    setSelectedPhoto(null);
-    setProfilePhoto(null);
-    setPreviewUrl(null);
-  };
+
   // profile details
   const getProfileDetails = async () => {
     let url = "/profile";
@@ -556,113 +552,3 @@ const EditAccount = () => {
 };
 
 export default EditAccount;
-/**
- *    <div className="bg-white shadow-xl w-full md:w-[80%] mx-auto  rounded-xl p-6 min-h-screen">
-         
-         
-          <div className="w-full flex flex-col md:flex-row md:items-center mb-8 gap-3 ">
-          
-            
-
-         
-          
-          </div>
-
-          {role === "individual" ? (
-            <>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-               
-               
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-               
-              </div>
-              {
-              ) : (
-              
-              )}
-
-            
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-3">
-               
-              </div>
-            
-             
-            </>
-          ) : (
-            <>
-            
-              {loadingUpdateProfile ? (
-                <div className="w-full flex justify-center my-5">
-                  <div className=" w-[180px] ">
-                    <LoadingBtn />
-                  </div>
-                </div>
-              ) : (
-                <div className="flex  items-center justify-center  gap-3 flex-wrap my-5">
-                  <button
-                    onClick={updateProfile}
-                    className="text-white roboto-bold  flex items-center justify-center rounded-lg  bg-mainColor py-2 px-3 w-[180px] capitalize"
-                  >
-                    {t("save changes")}
-                  </button>
-                  <button className="text-mainColor roboto-bold bg-white flex items-center justify-center rounded-lg border border-mainColor py-2 px-3 w-[180px] md:w-[150px] capitalize">
-                    {t("cancel")}
-                  </button>
-                </div>
-              )}
-
-              <p className="text-md md:text-lg lg:text-xl xl:text-2xl text-mainColor font-bold  mb-3">
-                {t("change password")}
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-3">
-                <AuthInput
-                  icon={<RiLockPasswordFill size={20} />}
-                  type="password"
-                  placeholder={t("current password")}
-                  isPassword={true}
-                  value={currentPassword}
-                  error={currentPasswordError}
-                  onChange={handleCurrentPasswordChange}
-                />
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <AuthInput
-                  icon={<RiLockPasswordFill size={20} />}
-                  type="password"
-                  placeholder={t("new password")}
-                  isPassword={true}
-                  value={newPassword}
-                  error={newPasswordError}
-                  onChange={handleNewPasswordChange}
-                />
-                <AuthInput
-                  icon={<RiLockPasswordFill size={20} />}
-                  type="password"
-                  placeholder={t("confirm password")}
-                  isPassword={true}
-                  value={confirmPassword}
-                  error={confirmPasswordError}
-                  onChange={handleConfrimPasswordChange}
-                />
-              </div>
-              <div className="flex  items-center justify-center  gap-3 flex-wrap my-5">
-                {loadingUpdatePassword ? (
-                  <div className=" w-[180px]">
-                    <LoadingBtn />
-                  </div>
-                ) : (
-                  <button
-                    onClick={handleUpdatePasswordClick}
-                    className="text-white roboto-bold  flex items-center justify-center rounded-lg  bg-mainColor py-2 px-3 w-[180px] capitalize"
-                  >
-                    {t("change password")}
-                  </button>
-                )}
-              </div>
-            </>
-          )}
-
-    
-        </div>
- */

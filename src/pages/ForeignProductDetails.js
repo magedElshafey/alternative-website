@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
@@ -7,9 +7,12 @@ import { useQuery } from "react-query";
 import { request } from "../utils/axios";
 import boycot from "../assets/boycot.png";
 import local from "../assets/true.png";
+import { useDispatch } from "react-redux";
+import { addForeignProduct } from "../store/recentlyViewedSlice";
 const ForeignProductDetails = () => {
   const { i18n, t } = useTranslation();
   const { id } = useParams();
+  const dispatch = useDispatch();
   const getProductDetails = async () => {
     let url = `/brands/${id}`;
     if (i18n.language === "ar") {
@@ -24,10 +27,16 @@ const ForeignProductDetails = () => {
     });
   };
   const { isLoading, data } = useQuery(
-    ["forgeing-product-details", id],
+    ["foreign-product-details", id],
     getProductDetails
   );
-
+  useEffect(() => {
+    if (data?.status === 200) {
+      dispatch(addForeignProduct(data?.data?.data));
+    } else {
+      return;
+    }
+  }, [data, dispatch]);
   return (
     <>
       {isLoading ? (

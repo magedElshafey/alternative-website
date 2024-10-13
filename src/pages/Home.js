@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Hero from "../components/home/Hero";
 import About from "../components/home/About";
 import Products from "../components/common/Products";
@@ -7,6 +7,7 @@ import Spinner from "../components/common/Spinner";
 import useAlternativeBrands from "../components/hooks/api/useAlternativeBrands";
 import useForeginBrands from "../components/hooks/api/useForeginBrands";
 import { useGlobalContext } from "../context/GlobalContext";
+import { useSelector } from "react-redux";
 const Home = () => {
   const { isLoading, data } = useAlternativeBrands();
   const { isLoading: loadingForegin, data: foregin } = useForeginBrands();
@@ -15,8 +16,8 @@ const Home = () => {
     "foregin?.data?.recently_viewed_products?.length",
     foregin?.data?.recently_viewed_products?.length
   );
-  const [recentlyViewedProducts, setRecentlyViewedProducts] = useState([]);
-
+  const { local, foreign } = useSelector((state) => state.recentlyViewedSlice);
+  const allProducts = [...local, ...foreign];
   return (
     <>
       {isLoading || loadingForegin ? (
@@ -52,13 +53,14 @@ const Home = () => {
               isLocal={false}
             />
           </div>
-          {recentlyViewedProducts?.length ? (
+          {allProducts?.length ? (
             <div className="my-12">
               <Products
                 isHome={true}
-                data={recentlyViewedProducts || []}
+                data={allProducts}
                 isLocal={false}
                 title="recently viewd"
+                notShowLabel={true}
               />
             </div>
           ) : null}

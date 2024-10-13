@@ -5,13 +5,16 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import local from "../../assets/true.png";
 import exportImg from "../../assets/export.png";
-import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
 import boycot from "../../assets/boycot.png";
-const Products = ({ isHome, data, isLocal, title }) => {
+const Products = ({ isHome, data, isLocal, title, notShowLabel }) => {
   const { t, i18n } = useTranslation();
   return (
     <div>
-      {isLocal ? <AlternativeLabel /> : <BoycotLabel />}
+      {isLocal ? (
+        <AlternativeLabel notShowLabel={notShowLabel} />
+      ) : (
+        <BoycotLabel notShowLabel={notShowLabel} />
+      )}
 
       <p
         className={`text-lg md:text-lg mt-4 lg:text-xl xl:text-2xl font-bold text-center ${

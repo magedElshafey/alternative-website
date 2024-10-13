@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ImUserTie } from "react-icons/im";
 import { HiUser } from "react-icons/hi2";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";

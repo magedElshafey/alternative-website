@@ -8,6 +8,7 @@ import Select from "react-select";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
+import { useSelector } from "react-redux";
 const ForeignProducts = () => {
   const { t, i18n } = useTranslation();
   const [name, setName] = useState("");
@@ -65,6 +66,8 @@ const ForeignProducts = () => {
     setName(""); // إعادة تعيين حقل الاسم
     setSelectedCity(null);
   };
+  const { foreign } = useSelector((state) => state.recentlyViewedSlice);
+
   return (
     <>
       {loadingCities ? (
@@ -113,6 +116,7 @@ const ForeignProducts = () => {
               isLocal={false}
               isHome={false}
               data={data?.data?.data || []}
+              notShowLabel={true}
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center">
@@ -121,13 +125,14 @@ const ForeignProducts = () => {
               </p>
             </div>
           )}
-          {data?.data?.recently_viewed_products?.length ? (
+          {foreign?.length ? (
             <div className="my-12">
               <Products
                 isHome={true}
-                data={data?.data?.recently_viewed_products || []}
+                data={foreign}
                 isLocal={false}
                 title="recently viewd"
+                notShowLabel={true}
               />
             </div>
           ) : null}
