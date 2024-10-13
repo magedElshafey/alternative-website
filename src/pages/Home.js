@@ -73,11 +73,3 @@ const Home = () => {
 };
 
 export default Home;
-/**
- *   
-          
-          <div className="container mx-auto px-8 md:px-16">
-          
-          
-          </div>
- */
