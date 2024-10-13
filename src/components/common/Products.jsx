@@ -26,19 +26,19 @@ const Products = ({ isHome, data, isLocal, title }) => {
           ? t(title)
           : t("Popular Foregin Brands")}
       </p>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8 xl:gap-12  mt-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 justify-center gap-4 md:gap-6 lg:gap-8 xl:gap-12  mt-8">
         {isHome
           ? data.slice(0, 12)?.map((item, index) => (
               <Link
                 key={index}
                 to={`${isLocal ? "/local" : "/foreign"}/${item.id}`}
-                className=" relative shadow-lg p-2 flex justify-center"
+                className=" relative overflow-hidden shadow-lg p-2 flex justify-center w-[214.8px] h-[214.8px] rounded-[50%] mx-auto"
               >
                 <img
                   src={item?.brand_logo}
                   alt={item?.brand_name}
                   loading="lazy"
-                  className="h-[100px] md:h-[140.8px]"
+                  className="max-w-full max-h-full"
                 />
                 {isLocal ? (
                   <img
@@ -72,13 +72,13 @@ const Products = ({ isHome, data, isLocal, title }) => {
               <Link
                 key={index}
                 to={`${isLocal ? "/local" : "/foreign"}/${item.id}`}
-                className=" relative shadow-lg p-2 flex justify-center"
+                className=" relative overflow-hidden shadow-lg p-2 flex justify-center w-[214.8px] h-[214.8px] rounded-[50%]"
               >
                 <img
                   src={item?.brand_logo}
                   alt={item?.brand_name}
                   loading="lazy"
-                  className="h-[100px] md:h-[140.8px]"
+                  className="max-w-full max-h-full"
                 />
                 {isLocal ? (
                   <img
