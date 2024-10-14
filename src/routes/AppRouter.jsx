@@ -123,11 +123,7 @@ const router = createBrowserRouter([
   },
 ]);
 const AppRouter = () => {
-  return (
-    <RouterProvider router={router}>
-      <ScrollToTopAfterChangePage />
-    </RouterProvider>
-  );
+  return <RouterProvider router={router} />;
 };
 
 export default AppRouter;

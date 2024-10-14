@@ -29,24 +29,25 @@ const Products = ({ isHome, data, isLocal, title, notShowLabel }) => {
           ? t(title)
           : t("Popular Foregin Brands")}
       </p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 justify-center gap-4 md:gap-6 lg:gap-8 xl:gap-12  mt-8">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 md:gap-6 lg:gap-8">
         {isHome
-          ? data.slice(0, 12)?.map((item, index) => (
+          ? data?.slice(0, 12)?.map((item, index) => (
               <Link
                 key={index}
                 to={`${isLocal ? "/local" : "/foreign"}/${item.id}`}
-                className=" relative overflow-hidden shadow-lg p-2 flex justify-center w-[214.8px] h-[214.8px] rounded-[50%] mx-auto"
+                className="relative bg-white rounded-full p-2 flex items-center justify-center shadow-sm"
               >
                 <img
                   src={item?.brand_logo}
                   alt={item?.brand_name}
                   loading="lazy"
+                  className="max-w-full "
                 />
                 {isLocal ? (
                   <img
                     alt="true"
                     src={local}
-                    className={` w-8 h-8 absolute bottom-0 ${
+                    className={` w-6 h-6 absolute -bottom-0 ${
                       i18n.language === "ar" ? "left-1" : "right-1"
                     }`}
                   />
@@ -74,19 +75,19 @@ const Products = ({ isHome, data, isLocal, title, notShowLabel }) => {
               <Link
                 key={index}
                 to={`${isLocal ? "/local" : "/foreign"}/${item.id}`}
-                className=" relative overflow-hidden shadow-lg p-2 flex justify-center w-[214.8px] h-[214.8px] rounded-[50%]"
+                className="relative bg-white rounded-full p-2 flex items-center justify-center shadow-sm"
               >
                 <img
                   src={item?.brand_logo}
                   alt={item?.brand_name}
                   loading="lazy"
-                  className="max-w-full max-h-full"
+                  className="max-w-full "
                 />
                 {isLocal ? (
                   <img
                     alt="true"
                     src={local}
-                    className={` w-8 h-8 absolute bottom-0 ${
+                    className={` w-6 h-6 absolute -bottom-0 ${
                       i18n.language === "ar" ? "left-1" : "right-1"
                     }`}
                   />
@@ -117,61 +118,58 @@ const Products = ({ isHome, data, isLocal, title, notShowLabel }) => {
 
 export default Products;
 /**
- *    <div className="mt-8 flex items-center  gap-6 md:gap-8 lg:gap-12 flex-wrap justify-center lg:justify-center">
+ *      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 justify-center gap-4 md:gap-6 lg:gap-8 xl:gap-12  mt-8">
         {isHome
-          ? data?.slice(0, 12).map((item, index) => (
-              <div key={index}>
-                <Link
-                  to={`${isLocal ? "/local" : "/foreign"}/${item.id}`}
-                  className="relative  shadow-lg bg-white "
-                >
-                  <img
-                    src={item?.brand_logo}
-                    alt={item?.brand_name}
-                    loading="lazy"
-                    className=" w-[120px] md:w-[170px] h-[100px] md:h-[170px]"
-                  />
-                  {isLocal ? (
-                    <img
-                      alt="true"
-                      src={local}
-                      className={` w-8 h-8 absolute bottom-0 ${
-                        i18n.language === "ar" ? "left-1" : "right-1"
-                      }`}
-                    />
-                  ) : (
-                    <img
-                      alt="boycot"
-                      src={boycot}
-                      className={` w-9 h-9 absolute bottom-0 ${
-                        i18n.language === "ar" ? "left-1" : "right-1"
-                      }`}
-                    />
-                  )}
-
-                  {isLocal ? (
-                    <img
-                      alt="export"
-                      src={exportImg}
-                      className={` w-12 h-12 absolute top-0  ${
-                        i18n.language === "ar" ? "right-1" : "left-1"
-                      }`}
-                    />
-                  ) : null}
-                </Link>
-              </div>
-            ))
-          : data?.map((item, index) => (
+          ? data.slice(0, 12)?.map((item, index) => (
               <Link
-                to={`${isLocal ? "/local" : "/foreign"}/${item.id}`}
                 key={index}
-                className="relative  shadow-lg bg-white "
+                to={`${isLocal ? "/local" : "/foreign"}/${item.id}`}
               >
                 <img
                   src={item?.brand_logo}
                   alt={item?.brand_name}
                   loading="lazy"
-                  className=" w-[120px] md:w-[170px] h-[100px] md:h-[170px]"
+                  className="max-w-full max-h-full object-contain"
+                />
+                {isLocal ? (
+                  <img
+                    alt="true"
+                    src={local}
+                    className={` w-8 h-8 absolute -bottom-5 ${
+                      i18n.language === "ar" ? "left-10" : "right-10"
+                    }`}
+                  />
+                ) : (
+                  <img
+                    alt="boycot"
+                    src={boycot}
+                    className={` w-9 h-9 absolute bottom-0 ${
+                      i18n.language === "ar" ? "left-1" : "right-1"
+                    }`}
+                  />
+                )}
+                {isLocal ? (
+                  <img
+                    alt="export"
+                    src={exportImg}
+                    className={` w-12 h-12 absolute top-0  ${
+                      i18n.language === "ar" ? "right-1" : "left-1"
+                    }`}
+                  />
+                ) : null}
+              </Link>
+            ))
+          : data?.map((item, index) => (
+              <Link
+                key={index}
+                to={`${isLocal ? "/local" : "/foreign"}/${item.id}`}
+                className=" relative overflow-hidden shadow-lg p-2 flex justify-center w-[170.8px] h-[170.8px] rounded-[50%]"
+              >
+                <img
+                  src={item?.brand_logo}
+                  alt={item?.brand_name}
+                  loading="lazy"
+                  className="max-w-full max-h-full object-contain"
                 />
                 {isLocal ? (
                   <img
@@ -194,27 +192,12 @@ export default Products;
                   <img
                     alt="export"
                     src={exportImg}
-                    className={` w-12 h-12 absolute top-0 md:top-2 ${
-                      i18n.language === "ar" ? "right-2" : "left-2"
+                    className={` w-12 h-12 absolute top-0  ${
+                      i18n.language === "ar" ? "right-1" : "left-1"
                     }`}
                   />
                 ) : null}
               </Link>
             ))}
       </div>
-      {isHome ? (
-        <div className="flex items-center justify-center">
-          <Link
-            to={isLocal ? "/local-products" : "/foreign-products"}
-            className={` bg-mainColor p-3 mt-12 rounded-lg min-w-[180px] capitalize text-white flex items-center justify-center gap-4`}
-          >
-            <p>{t("show more")}</p>
-            {i18n.language === "ar" ? (
-              <FaArrowLeftLong size={20} className="mt-1" />
-            ) : (
-              <FaArrowRightLong size={20} className="mt-1" />
-            )}
-          </Link>
-        </div>
-      ) : null}
  */

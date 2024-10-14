@@ -109,29 +109,27 @@ const ForeignProductDetails = () => {
                     {t("alternative")}
                   </p>
                   <div className=" flex items-center flex-wrap gap-2">
-                    {data?.data?.data?.brandAlternatives
-                      .slice(1, 5)
-                      ?.map((item, index) => (
-                        <Link
-                          key={index}
-                          to={`/local/${item?.id}`}
-                          className="relative w-[60px] md:w-[100.8px] h-[60px] md:h-[100.8px]  shadow-lg bg-white rounded-[50%] flex items-center justify-center gap-4 mb-8"
-                        >
-                          <img
-                            loading="lazy"
-                            alt={item?.brand_name}
-                            src={item?.brand_logo}
-                            className=" w-[40px] md:w-[80px] h-[40px] md:h-[80px]  rounded-[50%] object-contain "
-                          />
-                          <img
-                            alt="true"
-                            src={local}
-                            className={` w-3 h-3 md:w-5 md:h-5 absolute bottom-0 ${
-                              i18n.language === "ar" ? "left-3" : "right-3"
-                            }`}
-                          />
-                        </Link>
-                      ))}
+                    {data?.data?.data?.brandAlternatives?.map((item, index) => (
+                      <Link
+                        key={index}
+                        to={`/local/${item?.id}`}
+                        className="relative w-[60px] md:w-[100.8px] h-[60px] md:h-[100.8px]  shadow-lg bg-white rounded-[50%] flex items-center justify-center gap-4 mb-8"
+                      >
+                        <img
+                          loading="lazy"
+                          alt={item?.brand_name}
+                          src={item?.brand_logo}
+                          className=" w-[40px] md:w-[80px] h-[40px] md:h-[80px]  rounded-[50%] object-contain "
+                        />
+                        <img
+                          alt="true"
+                          src={local}
+                          className={` w-3 h-3 md:w-5 md:h-5 absolute bottom-0 ${
+                            i18n.language === "ar" ? "left-3" : "right-3"
+                          }`}
+                        />
+                      </Link>
+                    ))}
                   </div>
                   <Link
                     to="/add-product"

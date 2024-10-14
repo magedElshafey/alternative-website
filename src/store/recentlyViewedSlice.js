@@ -13,7 +13,7 @@ const recentlyViewedSlice = createSlice({
   initialState: getInitialState(),
   reducers: {
     addLocalProduct: (state, action) => {
-      const product = action.payload;
+      const product = { ...action.payload, isLocal: true };
       state.local = [
         product,
         ...state.local.filter((p) => p.id !== product.id),
@@ -22,7 +22,7 @@ const recentlyViewedSlice = createSlice({
       localStorage.setItem("recentlyViewedLocal", JSON.stringify(state.local));
     },
     addForeignProduct: (state, action) => {
-      const product = action.payload;
+      const product = { ...action.payload, isLocal: false };
       state.foreign = [
         product,
         ...state.foreign.filter((p) => p.id !== product.id),
