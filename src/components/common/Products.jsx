@@ -29,19 +29,19 @@ const Products = ({ isHome, data, isLocal, title, notShowLabel }) => {
           ? t(title)
           : t("Popular Foregin Brands")}
       </p>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 md:gap-6 lg:gap-8">
+      <div className=" flex items-center flex-wrap gap-6 md:gap-8 lg:gap-12">
         {isHome
           ? data?.slice(0, 12)?.map((item, index) => (
               <Link
                 key={index}
                 to={`${isLocal ? "/local" : "/foreign"}/${item.id}`}
-                className="relative bg-white rounded-full p-2 flex items-center justify-center shadow-sm"
+                className="relative w-[100px] md:w-[140.8px] h-[100px] md:h-[140.8px]  shadow-lg bg-white rounded-[50%] flex items-center justify-center gap-4 mb-8"
               >
                 <img
                   src={item?.brand_logo}
                   alt={item?.brand_name}
                   loading="lazy"
-                  className="max-w-full "
+                  className=" w-[80px] md:w-[120px] h-[80px] md:h-[120px]  rounded-[50%] object-contain "
                 />
                 {isLocal ? (
                   <img
@@ -75,13 +75,13 @@ const Products = ({ isHome, data, isLocal, title, notShowLabel }) => {
               <Link
                 key={index}
                 to={`${isLocal ? "/local" : "/foreign"}/${item.id}`}
-                className="relative bg-white rounded-full p-2 flex items-center justify-center shadow-sm"
+                className="relative w-[100px] md:w-[140.8px] h-[100px] md:h-[140.8px]  shadow-lg bg-white rounded-[50%] flex items-center justify-center gap-4 mb-8"
               >
                 <img
                   src={item?.brand_logo}
                   alt={item?.brand_name}
                   loading="lazy"
-                  className="max-w-full "
+                  className=" w-[80px] md:w-[120px] h-[80px] md:h-[120px]  rounded-[50%] object-contain "
                 />
                 {isLocal ? (
                   <img

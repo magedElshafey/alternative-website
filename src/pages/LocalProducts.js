@@ -79,7 +79,7 @@ const LocalProducts = () => {
       {loadingCities ? (
         <Spinner />
       ) : (
-        <div className="relative">
+        <div className="relative py-5">
           <div className="w-full flex items-center gap-5 p-2 bg-white rounded-lg border shadow mb-8 absolute top-[-50px] z-50 ">
             <Select
               options={citiesOptions}
