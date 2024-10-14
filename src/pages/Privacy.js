@@ -1,10 +1,13 @@
 import React from "react";
 import { useGlobalContext } from "../context/GlobalContext";
+
 const Privacy = () => {
   const { data } = useGlobalContext();
+  const formattedContent = data?.terms_and_conditions;
+
   return (
-    <div>
-      <div dangerouslySetInnerHTML={{ __html: data?.terms_and_conditions }} />
+    <div className="no-tailwind">
+      <div dangerouslySetInnerHTML={{ __html: formattedContent }} />
     </div>
   );
 };

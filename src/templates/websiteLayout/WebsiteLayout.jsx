@@ -13,6 +13,7 @@ const WebsiteLayout = () => {
     <div>
       <Meta fav={data?.favicon} />
       <Navbar />
+
       <div
         className={`main w-full container mx-auto px-6  my-5 ${
           pathname === "/local-products" || pathname === "/foreign-products"

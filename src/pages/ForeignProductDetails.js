@@ -114,7 +114,7 @@ const ForeignProductDetails = () => {
                       ?.map((item, index) => (
                         <Link
                           key={index}
-                          to={`/foreign/${item?.id}`}
+                          to={`/local/${item?.id}`}
                           className="relative w-[60px] md:w-[100.8px] h-[60px] md:h-[100.8px]  shadow-lg bg-white rounded-[50%] flex items-center justify-center gap-4 mb-8"
                         >
                           <img

@@ -180,3 +180,127 @@ a.auth.active {
 .authMain {
     background-color: var(--bgSection) !important;
 }
+
+/* .no-tailwind * {
+    all: revert !important;
+} */
+.no-tailwind li,
+.no-tailwind ol {
+    list-style-type: disc !important;
+}
+
+.no-tailwind {
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.no-tailwind h1,
+.no-tailwind h2,
+.no-tailwind h3,
+.no-tailwind h4,
+.no-tailwind h5,
+.no-tailwind h6 {
+    font-weight: bold !important;
+    margin-left: 0;
+    margin-right: 0;
+    display: block;
+}
+
+.no-tailwind h1 {
+
+    font-size: 2em;
+    margin-top: 0.67em;
+    margin-bottom: 0.67em;
+
+}
+
+.no-tailwind h2 {
+
+    font-size: 1.5em;
+    margin-top: 0.83em;
+    margin-bottom: 0.83em;
+
+}
+
+.no-tailwind h3 {
+
+    font-size: 1.17em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+
+}
+
+.no-tailwind h4 {
+
+    margin-top: 1.33em;
+    margin-bottom: 1.33em;
+
+}
+
+.no-tailwind h5 {
+
+    font-size: .83em;
+    margin-top: 1.67em;
+    margin-bottom: 1.67em;
+
+}
+
+.no-tailwind h6 {
+
+    font-size: .67em;
+    margin-top: 2.33em;
+    margin-bottom: 2.33em;
+
+
+}
+
+.no-tailwind strong {
+    font-weight: bold !important;
+}
+
+.no-tailwind .container {
+    width: 100%;
+    padding-right: 15px;
+    /* الهوامش الجانبية */
+    padding-left: 15px;
+    /* الهوامش الجانبية */
+    margin-right: auto;
+    /* الهوامش التلقائية */
+    margin-left: auto;
+    /* الهوامش التلقائية */
+}
+
+@media (min-width: 576px) {
+    .no-tailwind .container {
+        max-width: 540px;
+        /* أقصى عرض للحاوية في الشاشات الصغيرة */
+    }
+}
+
+@media (min-width: 768px) {
+    .no-tailwind .container {
+        max-width: 720px;
+        /* أقصى عرض للحاوية في الشاشات المتوسطة */
+    }
+}
+
+@media (min-width: 992px) {
+    .no-tailwind .container {
+        max-width: 960px;
+        /* أقصى عرض للحاوية في الشاشات الكبيرة */
+    }
+}
+
+@media (min-width: 1200px) {
+    .no-tailwind .container {
+        max-width: 1140px;
+        /* أقصى عرض للحاوية في الشاشات الكبيرة جدًا */
+    }
+}
+
+@media (min-width: 1400px) {
+    .no-tailwind .container {
+        max-width: 1320px;
+        /* أقصى عرض للحاوية في الشاشات الضخمة */
+    }
+}

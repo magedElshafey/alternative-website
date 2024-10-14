@@ -15,6 +15,7 @@ import { Provider } from "react-redux";
 import store from "./store/store";
 // context
 import GlobalContext from "./context/GlobalContext";
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {

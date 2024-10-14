@@ -41,7 +41,6 @@ const Products = ({ isHome, data, isLocal, title, notShowLabel }) => {
                   src={item?.brand_logo}
                   alt={item?.brand_name}
                   loading="lazy"
-                  className="max-w-full max-h-full"
                 />
                 {isLocal ? (
                   <img
