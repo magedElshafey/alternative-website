@@ -15,12 +15,12 @@ const LocalProducts = () => {
   const [selectedCity, setSelectedCity] = useState(null);
   const [defaultCity, setDefaultCity] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(15);
   const { isLoading, data } = useAlternativeBrands(
     name,
     selectedCity,
     currentPage
   );
-  const itemsPerPage = data?.data?.meta?.per_page;
 
   const handlePageChange = (selectedPage) => {
     setCurrentPage(selectedPage);
@@ -79,8 +79,8 @@ const LocalProducts = () => {
       {loadingCities ? (
         <Spinner />
       ) : (
-        <div className="relative py-5">
-          <div className="w-full flex items-center gap-5 p-2 bg-white rounded-lg border shadow mb-8 absolute top-[-50px] z-50 ">
+        <div className="relative py-5 ">
+          <div className="w-full flex items-center gap-5 p-2 bg-white rounded-lg border shadow mb-8 absolute top-[-80px] md:top-[-50px] z-50 ">
             <Select
               options={citiesOptions}
               onChange={handleChange}
@@ -163,11 +163,12 @@ const LocalProducts = () => {
               <FaArrowRightLong size={20} className="mt-1" />
             )}
           </Link>
-          {data?.data?.meta?.total > 1 ? (
+          {data?.data?.meta?.total > itemsPerPage &&
+          data?.data?.data?.length > 0 ? (
             <div className="mt-12">
               <Pagination
                 itemsPerPage={itemsPerPage}
-                totalItems={data?.data?.meta.total}
+                totalItems={data?.data?.meta?.total}
                 onPageChange={handlePageChange}
                 currentPage={currentPage}
               />

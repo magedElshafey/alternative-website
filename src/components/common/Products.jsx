@@ -29,9 +29,9 @@ const Products = ({ isHome, data, isLocal, title, notShowLabel }) => {
           ? t(title)
           : t("Popular Foregin Brands")}
       </p>
-      <div className=" flex items-center flex-wrap gap-6 md:gap-8 lg:gap-12">
+      <div className=" flex items-center flex-wrap gap-6 md:gap-8 lg:gap-12 justify-center">
         {isHome
-          ? data?.slice(0, 12)?.map((item, index) => (
+          ? data?.slice(0, 14)?.map((item, index) => (
               <Link
                 key={index}
                 to={`${isLocal ? "/local" : "/foreign"}/${item.id}`}
@@ -64,7 +64,7 @@ const Products = ({ isHome, data, isLocal, title, notShowLabel }) => {
                   <img
                     alt="export"
                     src={exportImg}
-                    className={` w-12 h-12 absolute top-0  ${
+                    className={` w-9 h-9 absolute top-0  ${
                       i18n.language === "ar" ? "right-1" : "left-1"
                     }`}
                   />
@@ -104,7 +104,7 @@ const Products = ({ isHome, data, isLocal, title, notShowLabel }) => {
                   <img
                     alt="export"
                     src={exportImg}
-                    className={` w-12 h-12 absolute top-0  ${
+                    className={` w-9 h-9 absolute top-0  ${
                       i18n.language === "ar" ? "right-1" : "left-1"
                     }`}
                   />

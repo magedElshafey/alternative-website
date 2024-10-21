@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ReactPaginate from "react-paginate";
-import { useTranslation } from "react-i18next";
 
 const Pagination = ({
   itemsPerPage,
@@ -13,14 +12,27 @@ const Pagination = ({
   const handlePageClick = (event) => {
     onPageChange(event.selected);
   };
+  const [isMobile, setIsMobile] = useState(false);
 
+  useEffect(() => {
+    // Check if the screen is mobile size (for example, less than 768px)
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+
+    // Clean up the event listener on component unmount
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
   return (
     <div className="w-full flex justify-center">
       <ReactPaginate
         breakClassName={"break-me"}
         pageCount={pageCount}
         marginPagesDisplayed={2}
-        pageRangeDisplayed={5}
+        pageRangeDisplayed={isMobile ? 1 : 5} // Show 1 page range on mobile, 5 on larger screens
         onPageChange={handlePageClick}
         subContainerClassName={"pages pagination"}
         forcePage={currentPage}

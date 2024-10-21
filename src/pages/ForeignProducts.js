@@ -13,8 +13,8 @@ const ForeignProducts = () => {
   const { t, i18n } = useTranslation();
   const [name, setName] = useState("");
   const [selectedCity, setSelectedCity] = useState(null);
-  const { isLoading, data } = useForeginBrands(name, selectedCity);
   const [currentPage, setCurrentPage] = useState(0);
+  const { isLoading, data } = useForeginBrands(name, selectedCity, currentPage);
   const itemsPerPage = data?.data?.meta?.per_page;
   const [defaultCity, setDefaultCity] = useState(null);
 
@@ -27,7 +27,6 @@ const ForeignProducts = () => {
     });
   };
   const { isLoading: loadingCities, data: cities } = useCities();
-  console.log("data from foreign products", data?.data);
   const handleChange = (selectedOption) => {
     setSelectedCity(selectedOption.value);
   };
@@ -73,8 +72,8 @@ const ForeignProducts = () => {
       {loadingCities ? (
         <Spinner />
       ) : (
-        <div className="relative py-5">
-          <div className="w-full flex items-center gap-5 p-2 bg-white rounded-lg border shadow mb-8 absolute top-[-50px] z-50 ">
+        <div className="relative py-5 px-4 ">
+          <div className="left-0 right-0 flex items-center gap-5 p-2 bg-white rounded-lg border shadow mb-8 absolute top-[-80px] lg:top-[-50px] z-30 ">
             <Select
               options={citiesOptions}
               onChange={handleChange}
@@ -147,7 +146,7 @@ const ForeignProducts = () => {
               <FaArrowRightLong size={20} className="mt-1" />
             )}
           </Link>
-          {data?.data?.meta?.total > 1 ? (
+          {data?.data?.meta?.total > itemsPerPage ? (
             <div className="mt-12">
               <Pagination
                 itemsPerPage={itemsPerPage}

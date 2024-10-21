@@ -12,7 +12,9 @@ const useAlternativeBrands = (name, selectedCity, page = 1) => {
     } else {
       url = "/brandsAlternative";
     }
-    const params = {};
+    const params = {
+      page: page + 1,
+    };
 
     if (name) {
       params.country_name = name;
@@ -21,7 +23,7 @@ const useAlternativeBrands = (name, selectedCity, page = 1) => {
     if (selectedCity) {
       params.country_id = selectedCity;
     }
-    params.page = page + 1;
+
     return await request({
       url,
       params,
@@ -31,7 +33,7 @@ const useAlternativeBrands = (name, selectedCity, page = 1) => {
     ["alternative-brands", name, selectedCity, page],
     () => getAlternativeBrands(name, selectedCity, page),
     {
-      keepPreviousData: true, // للحفاظ على البيانات السابقة أثناء تحميل الصفحة الجديدة
+      keepPreviousData: true,
     }
   );
 };

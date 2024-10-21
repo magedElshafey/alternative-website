@@ -65,18 +65,18 @@ const Home = () => {
               <p className="text-base md:text-md lg:text-lg xl:text-xl text-center font-bold mb-6 text-redColor">
                 {t("recently viewd")}
               </p>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 md:gap-6 lg:gap-8">
+              <div className=" flex items-center flex-wrap gap-6 md:gap-8 lg:gap-12 justify-center">
                 {allProducts?.map((item, index) => (
                   <Link
                     key={index}
                     to={`${item?.isLocal ? "/local" : "/foreign"}/${item.id}`}
-                    className="relative bg-white rounded-full p-2 flex items-center justify-center shadow-sm"
+                    className="relative w-[100px] md:w-[140.8px] h-[100px] md:h-[140.8px]  shadow-lg bg-white rounded-[50%] flex items-center justify-center gap-4 mb-8"
                   >
                     <img
                       src={item?.brand_logo}
                       alt={item?.brand_name}
                       loading="lazy"
-                      className="max-w-full "
+                      className=" w-[80px] md:w-[120px] h-[80px] md:h-[120px]  rounded-[50%] object-contain "
                     />
                     {item?.isLocal ? (
                       <img
