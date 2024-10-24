@@ -53,7 +53,7 @@ const Navbar = () => {
       <div className="md:hidden">
         <div
           ref={sidebarRef}
-          className={`fixed top-0 bg-mainColor z-50  h-screen w-[92%] duration-300 text-white ${
+          className={`fixed top-0 bg-mainColor  h-screen w-[92%] duration-300 text-white z-[2000] ${
             showSidebar ? "left-0" : "left-[-300%]"
           }`}
         >
