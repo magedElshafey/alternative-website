@@ -33,7 +33,7 @@ const LangMenu = () => {
       style={{
         userSelect: "none",
       }}
-      className="relative  roboto-regular"
+      className="relative  roboto-regular z-[1000]"
     >
       <div
         onClick={(e) => {
