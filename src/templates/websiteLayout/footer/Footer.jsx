@@ -22,10 +22,10 @@ const Footer = () => {
             {data?.slogan_ar || data?.slogan_en || data?.slogan_tr ? (
               <p className=" text-slate-200 mt-4">
                 {i18n.language === "ar"
-                  ? data?.slogan_ar
+                  ? data?.slogan_ar.substr(0, 70)
                   : i18n.language === "en"
-                  ? data?.slogan_en
-                  : data?.slogan_tr}
+                  ? data?.slogan_en.substr(0, 70)
+                  : data?.slogan_tr.substr(0, 70)}
               </p>
             ) : null}
           </div>
