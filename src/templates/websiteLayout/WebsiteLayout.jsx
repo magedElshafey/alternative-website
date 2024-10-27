@@ -8,7 +8,6 @@ import { useLocation } from "react-router-dom";
 const WebsiteLayout = () => {
   const { data } = useGlobalContext();
   const { pathname } = useLocation();
-  console.log("pathname", pathname);
   return (
     <div>
       <Meta fav={data?.favicon} />

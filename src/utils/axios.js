@@ -5,7 +5,6 @@ const token = userToken(store.getState());
 const lang = localStorage.getItem("lang")
   ? JSON.parse(localStorage.getItem("lang"))
   : "ar";
-console.log("lang", lang);
 const client = axios.create({
   baseURL: "https://alternatifurunler.com/api",
   headers: {

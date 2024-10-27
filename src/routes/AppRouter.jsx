@@ -21,6 +21,8 @@ import Privacy from "../pages/Privacy.js";
 import AddProduct from "../pages/AddProduct.js";
 import ProductTrial from "../pages/ProductTrial.js";
 import AddProductOwner from "../pages/AddProductOwner.js";
+import ProtectedRoutes from "./ProtectedRoutes.jsx";
+import RedirectIfLoggedIn from "./RedirectIfLoggedIn.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -63,11 +65,19 @@ const router = createBrowserRouter([
       },
       {
         path: "add-product/trial",
-        element: <ProductTrial />,
+        element: (
+          <ProtectedRoutes>
+            <ProductTrial />
+          </ProtectedRoutes>
+        ),
       },
       {
         path: "add-product/owner",
-        element: <AddProductOwner />,
+        element: (
+          <ProtectedRoutes>
+            <AddProductOwner />
+          </ProtectedRoutes>
+        ),
       },
     ],
   },
@@ -78,28 +88,48 @@ const router = createBrowserRouter([
     children: [
       {
         path: "login",
-        element: <Login />,
+        element: (
+          <RedirectIfLoggedIn>
+            <Login />
+          </RedirectIfLoggedIn>
+        ),
       },
       {
         path: "regester",
-        element: <Regester />,
+        element: (
+          <RedirectIfLoggedIn>
+            <Regester />
+          </RedirectIfLoggedIn>
+        ),
       },
       {
         path: "foreget",
-        element: <ForgetPassword />,
+        element: (
+          <RedirectIfLoggedIn>
+            <ForgetPassword />
+          </RedirectIfLoggedIn>
+        ),
       },
       {
         path: "password-verfication",
-        element: <PasswordVerfication />,
+        element: (
+          <RedirectIfLoggedIn>
+            <PasswordVerfication />
+          </RedirectIfLoggedIn>
+        ),
       },
       {
         path: "new-password",
-        element: <NewPassword />,
+        element: (
+          <RedirectIfLoggedIn>
+            <NewPassword />
+          </RedirectIfLoggedIn>
+        ),
       },
-      {
-        path: "edit-account",
-        element: <EditAccount />,
-      },
+      // {
+      //   path: "edit-account",
+      //   element: <EditAccount />,
+      // },
     ],
   },
   {

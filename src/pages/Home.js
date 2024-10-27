@@ -18,10 +18,7 @@ const Home = () => {
   const { isLoading: loadingForegin, data: foregin } = useForeginBrands();
   const { data: global } = useGlobalContext();
   const { i18n, t } = useTranslation();
-  console.log(
-    "foregin?.data?.recently_viewed_products?.length",
-    foregin?.data?.recently_viewed_products?.length
-  );
+
   const { local, foreign } = useSelector((state) => state.recentlyViewedSlice);
   const allProducts = [...local, ...foreign];
 

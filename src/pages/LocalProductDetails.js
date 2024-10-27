@@ -8,11 +8,12 @@ import { useQuery } from "react-query";
 import local from "../assets/true.png";
 import { useDispatch } from "react-redux";
 import { addLocalProduct } from "../store/recentlyViewedSlice";
-
+import { useNavigate } from "react-router-dom";
 const LocalProductDetails = () => {
   const { i18n, t } = useTranslation();
   const { id } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   //   add true icon
   const getProductDetails = async () => {
     let url = `/brandsAlternative/${id}`;
@@ -29,11 +30,15 @@ const LocalProductDetails = () => {
   };
   const { isLoading, data } = useQuery(
     ["alternative- product-details", id],
-    getProductDetails
+    getProductDetails,
+    {
+      onSuccess: (data) => {
+        if (data?.response?.status === 404 || data?.response?.status === 500) {
+          navigate("/error");
+        }
+      },
+    }
   );
-  // useEffect(() => {
-  //   ;
-  // }, [dispatch, data]);
   useEffect(() => {
     if (data?.status === 200) {
       dispatch(addLocalProduct(data?.data?.data));
@@ -41,7 +46,7 @@ const LocalProductDetails = () => {
       return;
     }
   }, [data, dispatch]);
-  console.log("data", data?.status);
+
   return (
     <>
       {isLoading ? (

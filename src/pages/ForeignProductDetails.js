@@ -9,10 +9,12 @@ import boycot from "../assets/boycot.png";
 import local from "../assets/true.png";
 import { useDispatch } from "react-redux";
 import { addForeignProduct } from "../store/recentlyViewedSlice";
+import { useNavigate } from "react-router-dom";
 const ForeignProductDetails = () => {
   const { i18n, t } = useTranslation();
   const { id } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const getProductDetails = async () => {
     let url = `/brands/${id}`;
     if (i18n.language === "ar") {
@@ -28,7 +30,14 @@ const ForeignProductDetails = () => {
   };
   const { isLoading, data } = useQuery(
     ["foreign-product-details", id],
-    getProductDetails
+    getProductDetails,
+    {
+      onSuccess: (data) => {
+        if (data?.response?.status === 404 || data?.response?.status === 500) {
+          navigate("/error");
+        }
+      },
+    }
   );
   useEffect(() => {
     if (data?.status === 200) {
