@@ -11,7 +11,7 @@ import { FaMobileScreen } from "react-icons/fa6";
 
 const Footer = () => {
   const { data } = useGlobalContext();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   return (
     <div className="w-screen bg-mainColor py-4 text-white roboto-regular">
@@ -19,16 +19,17 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-16 xl:gap-20">
           <div>
             <Logo img={data?.logo} />
-            <p className=" text-slate-200 mt-4">
-              {t("lorem").substring(0, 60)}
-            </p>
+            {data?.slogan_ar || data?.slogan_en || data?.slogan_tr ? (
+              <p className=" text-slate-200 mt-4">
+                {i18n.language === "ar"
+                  ? data?.slogan_ar
+                  : i18n.language === "en"
+                  ? data?.slogan_en
+                  : data?.slogan_tr}
+              </p>
+            ) : null}
           </div>
-          {/* <div>
-            <p className="text-white font-bold text-lg md:text-xl  mb-4">
-              {t("links")}
-            </p>
-            <WbsiteLinks isFlex={false} data={navlinks} isSidebar={false} /> 
-          </div> */}
+
           <div>
             <p className="text-white font-bold text-lg md:text-xl mb-4">
               {t("contact us")}
