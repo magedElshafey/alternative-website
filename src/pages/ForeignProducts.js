@@ -38,6 +38,7 @@ const ForeignProducts = () => {
         <span style={{ marginLeft: 8 }}>{item.name}</span>
       </div>
     ),
+    text: item.name,
   }));
   const handleNameChange = (e) => setName(e.target.value);
   useEffect(() => {
@@ -96,6 +97,11 @@ const ForeignProducts = () => {
                   color: "gray",
                 }),
               }}
+              filterOption={(option, inputValue) =>
+                option.data.text
+                  .toLowerCase()
+                  .includes(inputValue.toLowerCase())
+              }
             />
             <input
               className="flex-1 border-none focus:outline-none"
@@ -124,20 +130,10 @@ const ForeignProducts = () => {
               </p>
             </div>
           )}
-          {foreign?.length ? (
-            <div className="my-12">
-              <Products
-                isHome={true}
-                data={foreign}
-                isLocal={false}
-                title="recently viewd"
-                notShowLabel={true}
-              />
-            </div>
-          ) : null}
+
           <Link
             to="/add-product"
-            className="bg-mainColor p-3  rounded-lg min-w-[180px] max-w-fit capitalize text-white flex items-center justify-center gap-4 mx-auto mt-12"
+            className="bg-mainColor p-3  rounded-lg w-full  md:w-[270px] max-w-fit capitalize text-white flex items-center justify-center gap-4 mx-auto mt-12"
           >
             <p>{t("Add an alternative")}</p>
             {i18n.language === "ar" ? (
@@ -153,6 +149,17 @@ const ForeignProducts = () => {
                 totalItems={data?.data?.meta?.total}
                 onPageChange={handlePageChange}
                 currentPage={currentPage}
+              />
+            </div>
+          ) : null}
+          {foreign?.length ? (
+            <div className="my-12">
+              <Products
+                isHome={true}
+                data={foreign}
+                isLocal={false}
+                title="recently viewd"
+                notShowLabel={true}
               />
             </div>
           ) : null}

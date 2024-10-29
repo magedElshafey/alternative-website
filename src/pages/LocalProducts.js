@@ -39,6 +39,7 @@ const LocalProducts = () => {
         <span style={{ marginLeft: 8 }}>{item.name}</span>
       </div>
     ),
+    text: item.name,
   }));
 
   useEffect(() => {
@@ -103,6 +104,11 @@ const LocalProducts = () => {
                   color: "gray",
                 }),
               }}
+              filterOption={(option, inputValue) =>
+                option.data.text
+                  .toLowerCase()
+                  .includes(inputValue.toLowerCase())
+              }
             />
             <input
               className="flex-1 border-none focus:outline-none"
@@ -141,17 +147,6 @@ const LocalProducts = () => {
             </div>
           )}
 
-          {local?.length ? (
-            <div className="my-12">
-              <Products
-                isHome={true}
-                data={local}
-                isLocal={true}
-                title="recently viewd"
-                notShowLabel={true}
-              />
-            </div>
-          ) : null}
           <Link
             to="/add-product"
             className="bg-mainColor p-3  rounded-lg min-w-[180px] max-w-fit capitalize text-white flex items-center justify-center gap-4 mx-auto mt-12"
@@ -171,6 +166,17 @@ const LocalProducts = () => {
                 totalItems={data?.data?.meta?.total}
                 onPageChange={handlePageChange}
                 currentPage={currentPage}
+              />
+            </div>
+          ) : null}
+          {local?.length ? (
+            <div className="my-12">
+              <Products
+                isHome={true}
+                data={local}
+                isLocal={true}
+                title="recently viewd"
+                notShowLabel={true}
               />
             </div>
           ) : null}

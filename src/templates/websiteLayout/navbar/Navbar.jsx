@@ -6,10 +6,9 @@ import LangMenu from "../../../components/layout/navbar/LangMenu";
 import AuthBtns from "../../../components/layout/navbar/AuthBtns";
 import { IoMenu } from "react-icons/io5";
 import { IoMdClose } from "react-icons/io";
-import { useTranslation } from "react-i18next";
 import { useGlobalContext } from "../../../context/GlobalContext";
+
 const Navbar = () => {
-  const { t } = useTranslation();
   const [showSidebar, setShowSidebar] = useState(false);
   const toggleSidebar = () => setShowSidebar(!showSidebar);
   const { data } = useGlobalContext();

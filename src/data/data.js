@@ -19,10 +19,6 @@ export const navlinks = [
     title: "Foregin Products",
     path: "/foreign-products",
   },
-  {
-    title: "Privacy Policy",
-    path: "/privacy",
-  },
 ];
 
 export const heroDetails = {

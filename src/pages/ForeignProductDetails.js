@@ -7,9 +7,10 @@ import { useQuery } from "react-query";
 import { request } from "../utils/axios";
 import boycot from "../assets/boycot.png";
 import local from "../assets/true.png";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addForeignProduct } from "../store/recentlyViewedSlice";
 import { useNavigate } from "react-router-dom";
+import Products from "../components/common/Products";
 const ForeignProductDetails = () => {
   const { i18n, t } = useTranslation();
   const { id } = useParams();
@@ -46,6 +47,7 @@ const ForeignProductDetails = () => {
       return;
     }
   }, [data, dispatch]);
+  const { foreign } = useSelector((state) => state.recentlyViewedSlice);
   return (
     <>
       {isLoading ? (
@@ -155,6 +157,17 @@ const ForeignProductDetails = () => {
               ) : null}
             </div>
           </div>
+          {foreign?.length ? (
+            <div className="my-12">
+              <Products
+                isHome={true}
+                data={foreign}
+                isLocal={false}
+                title="recently viewd"
+                notShowLabel={true}
+              />
+            </div>
+          ) : null}
         </div>
       )}
     </>

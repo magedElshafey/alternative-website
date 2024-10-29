@@ -92,11 +92,15 @@ const EditAccount = () => {
   };
   const { isLoading, data } = useQuery("my-profile", getProfileDetails, {
     onSuccess: (data) => {
-      if (data?.data?.status) {
+      console.log("data from my profile", data);
+      if (data?.data?.status === 200) {
         setName(data?.data?.data?.name);
         setEmail(data?.data?.data?.email);
         setPhone(data?.data?.data?.phone);
         setPreviewUrl(data?.data?.data?.image);
+      } else if (data?.response?.status === 401) {
+        dispatch(logout());
+        navigate("/");
       }
     },
 

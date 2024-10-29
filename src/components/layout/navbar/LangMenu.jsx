@@ -20,7 +20,7 @@ const LangMenu = () => {
     };
   }, []);
   const handleChangeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
+    localStorage.setItem("lang", JSON.stringify(lng));
     window.location.reload();
     setShowMenu(false);
   };

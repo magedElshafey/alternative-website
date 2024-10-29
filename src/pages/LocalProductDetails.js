@@ -6,9 +6,10 @@ import Spinner from "../components/common/Spinner";
 import { request } from "../utils/axios";
 import { useQuery } from "react-query";
 import local from "../assets/true.png";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addLocalProduct } from "../store/recentlyViewedSlice";
 import { useNavigate } from "react-router-dom";
+import Products from "../components/common/Products";
 const LocalProductDetails = () => {
   const { i18n, t } = useTranslation();
   const { id } = useParams();
@@ -46,7 +47,9 @@ const LocalProductDetails = () => {
       return;
     }
   }, [data, dispatch]);
-
+  const { local: localProductts } = useSelector(
+    (state) => state.recentlyViewedSlice
+  );
   return (
     <>
       {isLoading ? (
@@ -127,6 +130,17 @@ const LocalProductDetails = () => {
               </Link>
             </div>
           </div>
+          {localProductts?.length ? (
+            <div className="my-12">
+              <Products
+                isHome={true}
+                data={localProductts}
+                isLocal={true}
+                title="recently viewd"
+                notShowLabel={true}
+              />
+            </div>
+          ) : null}
         </div>
       )}
     </>

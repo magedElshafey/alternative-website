@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Hero from "../components/home/Hero";
 import About from "../components/home/About";
 import Products from "../components/common/Products";
@@ -13,12 +13,12 @@ import { useTranslation } from "react-i18next";
 import exportImg from "../assets/export.png";
 import boycot from "../assets/boycot.png";
 import localImg from "../assets/true.png";
+import { IoIosArrowRoundForward, IoIosArrowRoundBack } from "react-icons/io";
 const Home = () => {
   const { isLoading, data } = useAlternativeBrands();
   const { isLoading: loadingForegin, data: foregin } = useForeginBrands();
   const { data: global } = useGlobalContext();
   const { i18n, t } = useTranslation();
-
   const { local, foreign } = useSelector((state) => state.recentlyViewedSlice);
   const allProducts = [...local, ...foreign];
 
@@ -49,6 +49,20 @@ const Home = () => {
               data={data?.data?.data || []}
               isLocal={true}
             />
+            <div className="w-full flex justify-center mt-4 md:mt-6 lg:mt-8">
+              <Link
+                to="/local-products"
+                className="py-3 px-6 flex items-center justify-center gap-1 bg-mainColor text-white rounded-md"
+              >
+                {i18n.language === "ar" ? (
+                  <IoIosArrowRoundForward size={20} />
+                ) : (
+                  <IoIosArrowRoundBack size={20} />
+                )}
+
+                <p>{t("show more")}</p>
+              </Link>
+            </div>
           </div>
           <div className="my-12">
             <Products
@@ -56,6 +70,20 @@ const Home = () => {
               data={foregin?.data?.data || []}
               isLocal={false}
             />
+            <div className="w-full flex justify-center mt-4 md:mt-6 lg:mt-8">
+              <Link
+                to="/foreign-products"
+                className="py-3 px-6 flex items-center justify-center gap-1 bg-mainColor text-white rounded-md"
+              >
+                {i18n.language === "ar" ? (
+                  <IoIosArrowRoundForward size={20} />
+                ) : (
+                  <IoIosArrowRoundBack size={20} />
+                )}
+
+                <p>{t("show more")}</p>
+              </Link>
+            </div>
           </div>
           {allProducts?.length ? (
             <div className="my-12">

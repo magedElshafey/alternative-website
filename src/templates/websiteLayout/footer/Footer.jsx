@@ -8,6 +8,7 @@ import { MdEmail } from "react-icons/md";
 import { CiLocationOn } from "react-icons/ci";
 import { useGlobalContext } from "../../../context/GlobalContext";
 import { FaMobileScreen } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const { data } = useGlobalContext();
@@ -16,7 +17,7 @@ const Footer = () => {
   return (
     <div className="w-screen bg-mainColor py-4 text-white roboto-regular">
       <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-16 xl:gap-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-16 xl:gap-20">
           <div>
             <Logo img={data?.logo} />
             {data?.slogan_ar || data?.slogan_en || data?.slogan_tr ? (
@@ -29,7 +30,21 @@ const Footer = () => {
               </p>
             ) : null}
           </div>
-
+          <div>
+            <p className="text-white font-bold text-lg md:text-xl mb-4">
+              {t("important links")}
+            </p>
+            <ul>
+              {navlinks?.map((item, index) => (
+                <li key={index} className="mb-3">
+                  <Link to={item?.path}>{t(item?.title)}</Link>
+                </li>
+              ))}
+              <li>
+                <Link to="/privacy">{t("Privacy Policy")}</Link>
+              </li>
+            </ul>
+          </div>
           <div>
             <p className="text-white font-bold text-lg md:text-xl mb-4">
               {t("contact us")}

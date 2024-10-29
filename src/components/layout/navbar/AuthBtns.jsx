@@ -17,7 +17,7 @@ const AuthBtns = (isSidebar) => {
   const toggleShowMenu = () => setShowMenu(!showMenu);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { alternativeLogin, alternativeRegester, userData } = useSelector(
+  const { alternativeLogin, userData } = useSelector(
     (state) => state.authSlice
   );
   const handleLogout = async (data) => {
