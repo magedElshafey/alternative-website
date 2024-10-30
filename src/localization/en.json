@@ -114,5 +114,7 @@
   "Reset": "Reset",
   "Add a Boycott Brand": "Add a Boycott Brand",
   "No results found": "No results found",
-  "important links": "important links"
+  "important links": "important links",
+  "expired session": "Your login has expired",
+  "need to login again": "You need to log in again"
 }

@@ -116,5 +116,7 @@
   "Reset": "Sıfırla",
   "Add a Boycott Brand": "Boykot Markası Ekle",
   "No results found": "Sonuç bulunamadı",
-  "important links": "önemli bağlantılar"
+  "important links": "önemli bağlantılar",
+  "expired session": "Giriş bilgilerinizin süresi doldu",
+  "need to login again": "Tekrar giriş yapmanız gerekiyor"
 }
