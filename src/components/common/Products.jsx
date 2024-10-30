@@ -17,7 +17,7 @@ const Products = ({ isHome, data, isLocal, title, notShowLabel }) => {
       )}
 
       <p
-        className={`text-lg md:text-lg mt-4 lg:text-xl xl:text-2xl font-bold text-center ${
+        className={` mt-4 text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-center ${
           isLocal ? "text-mainColor" : "text-redColor"
         }`}
       >

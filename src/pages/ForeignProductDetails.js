@@ -146,7 +146,7 @@ const ForeignProductDetails = () => {
                     to="/add-product"
                     className="bg-mainColor p-3   rounded-lg w-[250px] capitalize text-white flex items-center justify-center gap-4 mx-auto"
                   >
-                    <p>{t("add alternative")}</p>
+                    <p>{t("add an alternative")}</p>
                     {i18n.language === "ar" ? (
                       <FaArrowLeftLong size={20} className="mt-1" />
                     ) : (

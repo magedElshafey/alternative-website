@@ -87,7 +87,7 @@ const Home = () => {
           </div>
           {allProducts?.length ? (
             <div className="my-12">
-              <p className="text-base md:text-md lg:text-lg xl:text-xl text-center font-bold mb-6 text-redColor">
+              <p className="text-xl md:text-2xl lg:text-3xl xl:text-4xl text-center font-bold mb-6 text-redColor">
                 {t("recently viewd")}
               </p>
               <div className=" flex items-center flex-wrap gap-6 md:gap-8 lg:gap-12 justify-center">

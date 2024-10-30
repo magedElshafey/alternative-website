@@ -80,7 +80,7 @@ const AuthBtns = (isSidebar) => {
           </div>
           {showMenu ? (
             <div
-              className={`bg-white rounded-md p-2 text-start shadow-xl z-50 absolute min-w-[240px] bottom-[-84px] ${
+              className={`bg-white rounded-md p-2 text-start shadow-xl z-[1000] absolute min-w-[240px] bottom-[-84px] ${
                 i18n.language === "ar" ? "left-0" : "right-0"
               }`}
             >
