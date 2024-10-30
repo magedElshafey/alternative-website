@@ -92,7 +92,6 @@ const EditAccount = () => {
   };
   const { isLoading, data } = useQuery("my-profile", getProfileDetails, {
     onSuccess: (data) => {
-      console.log("data from my profile", data);
       if (data?.data?.status) {
         setName(data?.data?.data?.name);
         setEmail(data?.data?.data?.email);

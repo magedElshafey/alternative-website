@@ -57,7 +57,6 @@ const WebsiteLayout = () => {
       },
     }
   );
-  console.log("profile data", profileData);
   return (
     <div>
       <Meta fav={data?.favicon} />

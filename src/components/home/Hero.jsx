@@ -48,7 +48,6 @@ const Hero = ({
       enabled: false,
     }
   );
-  console.log("searc data", data?.data?.data);
   return (
     <div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-8 items-center">
